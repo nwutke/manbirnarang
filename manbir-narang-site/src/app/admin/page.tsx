@@ -3,13 +3,14 @@
 import { useCallback, useEffect, useState } from "react";
 import { getSupabase } from "@/lib/supabase";
 import { rowToListing } from "@/lib/listings";
-import { CATEGORIES, STATUSES, money, type Listing } from "@/lib/types";
+import { CATEGORIES, STATUSES, money, slugify, type Listing } from "@/lib/types";
 
 type Inquiry = { id: string; created_at: string; kind: string; name: string; email: string; phone: string | null; address: string | null; interest: string | null; message: string | null };
 
 const empty = {
   id: "", title: "", location: "", price: "", status: "New listing", category: "Homes", beds: "3", baths: "2", sqft: "",
   description: "", photos: [] as string[], featured: true, published: true, sort: "0",
+  slug: "", mls: "", yearBuilt: "", lotSize: "", taxes: "", features: "",
 };
 type Form = typeof empty;
 
@@ -98,7 +99,14 @@ export default function Admin() {
       status: form.status, category: form.category, beds: Number(form.beds) || 0, baths: Number(form.baths) || 0,
       sqft: Number(form.sqft.replace(/[^0-9]/g, "")) || 0, description: form.description.trim(), photos: form.photos,
       featured: form.featured, published: form.published, sort: Number(form.sort) || 0,
+      slug: slugify(form.slug.trim() || form.title), mls: form.mls.trim() || null,
+      year_built: Number(form.yearBuilt.replace(/[^0-9]/g, "")) || null, lot_size: form.lotSize.trim() || null,
+      taxes: Number(form.taxes.replace(/[^0-9.]/g, "")) || null,
+      features: form.features.split("\n").map((x) => x.trim()).filter(Boolean),
     };
+    if (listings.some((l) => l.slug === row.slug && l.id !== form.id)) {
+      setBusy(false); setMsg(`Could not save: another listing already uses the web address "${row.slug}".`); return;
+    }
     const { error } = form.id ? await sb!.from("listings").update(row).eq("id", form.id) : await sb!.from("listings").insert(row);
     setBusy(false);
     if (error) { setMsg("Could not save: " + error.message); return; }
@@ -121,6 +129,8 @@ export default function Admin() {
     setForm({
       id: l.id, title: l.title, location: l.location, price: String(l.price), status: l.status, category: l.category, beds: String(l.beds),
       baths: String(l.baths), sqft: String(l.sqft), description: l.description, photos: l.photos, featured: l.featured, published: l.published, sort: String(l.sort),
+      slug: l.slug, mls: l.mls ?? "", yearBuilt: l.yearBuilt ? String(l.yearBuilt) : "", lotSize: l.lotSize ?? "",
+      taxes: l.taxes ? String(l.taxes) : "", features: l.features.join("\n"),
     });
 
   return (
@@ -178,6 +188,15 @@ export default function Admin() {
             <label>Bathrooms<input value={form.baths} onChange={(e) => set("baths", e.target.value)} inputMode="decimal" /></label>
             <label>Square feet<input value={form.sqft} onChange={(e) => set("sqft", e.target.value)} inputMode="numeric" /></label>
           </div>
+          <label>Web address<input value={form.slug} onChange={(e) => set("slug", e.target.value)} placeholder={slugify(form.title) || "2684-12th-avenue"} />
+            <small className="admhint">manbirnarang.ca/{slugify(form.slug || form.title) || "…"} (leave blank to use the title)</small></label>
+          <div className="g3a">
+            <label>MLS® number<input value={form.mls} onChange={(e) => set("mls", e.target.value)} placeholder="1052146" /></label>
+            <label>Year built<input value={form.yearBuilt} onChange={(e) => set("yearBuilt", e.target.value)} inputMode="numeric" /></label>
+            <label>Annual taxes ($)<input value={form.taxes} onChange={(e) => set("taxes", e.target.value)} inputMode="numeric" /></label>
+          </div>
+          <label>Lot size<input value={form.lotSize} onChange={(e) => set("lotSize", e.target.value)} placeholder="0.17 acres" /></label>
+          <label>Features (one per line)<textarea rows={5} value={form.features} onChange={(e) => set("features", e.target.value)} placeholder={"Double garage\nHeat pump\nCity and mountain views"} /></label>
           <label>Description<textarea rows={4} value={form.description} onChange={(e) => set("description", e.target.value)} placeholder="A short description. The first two lines show on the card." /></label>
           <label>Photos (the first one is the cover)<input type="file" accept="image/*" multiple onChange={(e) => upload(e.target.files)} /></label>
           <div className="admphotos">

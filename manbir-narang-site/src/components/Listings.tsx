@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import { CATEGORIES, money, type Listing } from "@/lib/types";
 
@@ -27,7 +28,7 @@ function Card({ l }: { l: Listing }) {
   const cover = l.photos[0];
   const bg = cover ? { background: `url("${cover}") 50% 50%/cover no-repeat` } : undefined;
   return (
-    <article className="lc">
+    <Link href={`/${l.slug}`} className="lc lcl" aria-label={`${l.title}, ${money(l.price)}`}>
       <div className="ph2 f1" style={bg}>
         <div className="bd">
           {l.featured ? <span className="pill">Featured</span> : <span />}
@@ -45,9 +46,9 @@ function Card({ l }: { l: Listing }) {
       <div className="lpr">{money(l.price)}</div>
       <p className="ld">{l.description}</p>
       <div className="lspec">
-        <span><Icon d={I.bed} />{l.beds}</span>
-        <span><Icon d={I.bath} />{l.baths}</span>
-        <span><Icon d={I.area} />{l.sqft.toLocaleString("en-CA")} ft²</span>
+        {l.beds > 0 ? <span><Icon d={I.bed} />{l.beds}</span> : null}
+        {l.baths > 0 ? <span><Icon d={I.bath} />{l.baths}</span> : null}
+        {l.sqft > 0 ? <span><Icon d={I.area} />{l.sqft.toLocaleString("en-CA")} ft²</span> : null}
       </div>
       <div className="lag">
         <div className="who"><i className="av" />Manbir Narang</div>
@@ -57,7 +58,7 @@ function Card({ l }: { l: Listing }) {
           <i><Icon d={I.plus} /></i>
         </div>
       </div>
-    </article>
+    </Link>
   );
 }
 

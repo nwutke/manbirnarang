@@ -5,7 +5,7 @@ import { getSupabase } from "@/lib/supabase";
 
 type Kind = "contact" | "valuation";
 
-export default function EnquiryForm({ kind, button }: { kind: Kind; button: string }) {
+export default function EnquiryForm({ kind, button, listing }: { kind: Kind; button: string; listing?: string }) {
   const [state, setState] = useState<"idle" | "sending" | "sent" | "error" | "offline">("idle");
 
   async function submit(e: React.FormEvent<HTMLFormElement>) {
@@ -45,19 +45,20 @@ export default function EnquiryForm({ kind, button }: { kind: Kind; button: stri
 
   return (
     <form onSubmit={submit} className="fform">
+      {listing ? <input type="hidden" name="address" value={listing} /> : null}
       {kind === "valuation" ? <input className="fi" name="address" placeholder="Property address" required autoComplete="street-address" /> : null}
       <input className="fi" name="name" placeholder="Full name" required autoComplete="name" />
       <input className="fi" name="email" type="email" placeholder="Email" required autoComplete="email" />
       <input className="fi" name="phone" type="tel" placeholder="Phone (optional)" autoComplete="tel" />
       {kind === "contact" ? (
         <>
-          <select className="fi" name="interest" defaultValue="">
+          <select className="fi" name="interest" defaultValue={listing ? "Buying" : ""}>
             <option value="" disabled>I am interested in…</option>
             <option>Buying</option>
             <option>Selling</option>
             <option>Something else</option>
           </select>
-          <textarea className="fi" name="message" rows={4} placeholder="Message" />
+          <textarea className="fi" name="message" rows={4} placeholder="Message" defaultValue={listing ? `Hi Manbir, I'd like more information about ${listing}.` : undefined} />
         </>
       ) : null}
       <input name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hp" />

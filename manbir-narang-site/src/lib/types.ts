@@ -14,7 +14,17 @@ export type Listing = {
   featured: boolean;
   published: boolean;
   sort: number;
+  slug: string; // web address, e.g. "2684-12th-avenue" -> manbirnarang.ca/2684-12th-avenue
+  mls?: string | null;
+  yearBuilt?: number | null;
+  lotSize?: string | null;
+  taxes?: number | null;
+  features: string[];
 };
+
+/** Turns a title or address into a web address: "2684 12th Avenue" -> "2684-12th-avenue". */
+export const slugify = (s: string) =>
+  s.toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "").replace(/&/g, " and ").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
 
 export const CATEGORIES = ["Homes", "Lakefront", "Waterfront", "Acreage", "Estates", "Condos", "Commercial"] as const;
 export const STATUSES = ["New listing", "Just listed", "Open house Sat", "Price improved", "For sale", "Sold"] as const;

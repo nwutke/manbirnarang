@@ -42,8 +42,9 @@ Pages: Home, Properties, Buy, Sell, Communities, About, Contact, plus a private 
 2. Click **+ Add listing**, fill in the details, upload photos (the first photo is the cover), and **Save**.
 3. The public site updates within about a minute.
 4. Until you add your first real listing, the site shows six sample homes. Once any listing exists, only your real ones appear.
-5. Use **Show on the website** to hide a listing without deleting it. Set status to **Sold** to move it to the Sold filter.
-6. The **Enquiries** tab shows every message from the contact and home valuation forms. Delete them once handled.
+5. Each listing gets its own page at `yourdomain.com/web-address`. Set **Web address** in the form (or leave it blank to use the title). Fill in MLS number, year built, taxes, lot size and features (one per line) to show them on that page.
+6. Use **Show on the website** to hide a listing without deleting it. Set status to **Sold** to move it to the Sold filter.
+7. The **Enquiries** tab shows every message from the contact and home valuation forms. Delete them once handled.
 
 ## Things to replace with your real details
 

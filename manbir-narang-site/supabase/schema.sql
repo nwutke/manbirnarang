@@ -87,3 +87,11 @@ create policy "admin updates listing photos" on storage.objects
 drop policy if exists "admin deletes listing photos" on storage.objects;
 create policy "admin deletes listing photos" on storage.objects
   for delete to authenticated using (bucket_id = 'listing-photos');
+
+-- 4) Listing page details (added Oct 2026). Safe to run more than once.
+alter table public.listings add column if not exists slug text;
+alter table public.listings add column if not exists mls text;
+alter table public.listings add column if not exists year_built int;
+alter table public.listings add column if not exists lot_size text;
+alter table public.listings add column if not exists taxes numeric;
+alter table public.listings add column if not exists features text[] not null default '{}';
