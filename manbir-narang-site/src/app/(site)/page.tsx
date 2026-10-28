@@ -52,7 +52,7 @@ export default async function Home() {
 
       <section className="iv">
         <div className="w">
-          <SectionHead title="Explore areas" sub="Find the community that suits how you want to live." />
+          <SectionHead title="Explore Areas" sub="Find the community that suits how you want to live." />
           <div className="hoods3">
             {HOODS.map((h) => (
               <Link href="/communities" className={"hd " + h.cls} key={h.name}>

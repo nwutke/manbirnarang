@@ -4,7 +4,7 @@ import { HOODS } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Communities",
-  description: "Sproat Lake, Alberni Inlet, Beaver Creek, Cherry Creek, Bamfield and Port Alberni: find the Alberni Valley community that suits you.",
+  description: "Port Alberni, Beaver Creek, Cherry Creek and Sproat Lake: find the Alberni Valley community that suits you.",
 };
 
 export default function Communities() {

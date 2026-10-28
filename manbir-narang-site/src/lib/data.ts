@@ -19,12 +19,10 @@ export const EMAIL = "manbirnarangrealestate@gmail.com";
 export const OFFICE = "RE/MAX Mid-Island Realty, 4201 Johnston Road, Port Alberni";
 
 export const HOODS = [
-  { cls: "h1 pf1", name: "Sproat Lake", text: "Warm, calm water, sandy shores, and some of the valley’s most sought-after lakefront homes.", avg: "From $900K", life: "Lakefront", count: "4 homes" },
-  { cls: "h2 pf2", name: "Alberni Inlet", text: "Working-harbour character with deep-water views and a gateway to the open Pacific.", avg: "From $650K", life: "Waterfront", count: "3 homes" },
+  { cls: "h4 pf5", name: "Port Alberni", text: "Uptown and Harbour Quay living with shops, schools, and every convenience.", avg: "From $450K", life: "Town", count: "12 homes" },
   { cls: "h3 pf3", name: "Beaver Creek", text: "Quiet rural acreage with space, privacy, and mountain scenery close to town.", avg: "From $800K", life: "Acreage", count: "5 homes" },
-  { cls: "h4 pf5", name: "Port Alberni City", text: "Uptown and Harbour Quay living with shops, schools, and every convenience.", avg: "From $450K", life: "Town", count: "12 homes" },
   { cls: "h5 pf6", name: "Cherry Creek", text: "Open farmland and country estates with room to breathe.", avg: "From $850K", life: "Rural", count: "2 homes" },
-  { cls: "h6 pf4", name: "Bamfield", text: "A remote seaside village on Barkley Sound, reached by road or by boat.", avg: "From $400K", life: "Remote coastal", count: "1 home" },
+  { cls: "h1 pf1", name: "Sproat Lake", text: "Warm, calm water, sandy shores, and some of the valley’s most sought-after lakefront homes.", avg: "From $900K", life: "Lakefront", count: "4 homes" },
 ];
 
 export const TESTIMONIALS = [
