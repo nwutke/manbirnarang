@@ -20,6 +20,8 @@ export type Listing = {
   lotSize?: string | null;
   taxes?: number | null;
   features: string[];
+  listedBy?: string | null; // set for other agents' brokerage listings
+  sourceUrl?: string | null;
 };
 
 /** Turns a title or address into a web address: "2684 12th Avenue" -> "2684-12th-avenue". */

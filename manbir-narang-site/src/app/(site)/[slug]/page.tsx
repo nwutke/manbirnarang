@@ -7,6 +7,7 @@ import ShareButton from "@/components/ShareButton";
 import { Orn } from "@/components/ui";
 import { EMAIL, OFFICE, PHONE } from "@/lib/data";
 import { getListingBySlug, getListings } from "@/lib/listings";
+import { getBrokerageListings } from "@/lib/brokerage";
 import { money, type Listing } from "@/lib/types";
 
 export const revalidate = 60;
@@ -14,7 +15,7 @@ export const dynamicParams = true;
 
 export async function generateStaticParams() {
   const listings = await getListings();
-  return listings.map((l) => ({ slug: l.slug }));
+  return [...listings, ...getBrokerageListings(listings)].map((l) => ({ slug: l.slug }));
 }
 
 type Props = { params: Promise<{ slug: string }> };
@@ -59,6 +60,7 @@ export default async function ListingPage({ params }: Props) {
       ["Year built", l.yearBuilt ? String(l.yearBuilt) : ""],
       ["Annual taxes", l.taxes ? money(l.taxes) : ""],
       ["MLS® number", l.mls ?? ""],
+      ["Listed by", l.listedBy ? `${l.listedBy}, RE/MAX Mid-Island Realty` : ""],
     ] as [string, string][]
   ).filter(([, v]) => v);
   const paragraphs = l.description.split(/\n{2,}|\n/).map((p) => p.trim()).filter(Boolean);
@@ -87,6 +89,7 @@ export default async function ListingPage({ params }: Props) {
           <p className="lhloc">{l.location}</p>
           <div className="lhprice">{money(l.price)}</div>
           {specLine(l) ? <p className="lhspec">{specLine(l)}</p> : null}
+          {l.listedBy ? <p className="lhcourtesy">Listing courtesy of {l.listedBy}, RE/MAX Mid-Island Realty</p> : null}
           <div className="lhbtns">
             <a href="#contact" className="btn">Contact Manbir</a>
             {l.photos.length > 1 ? <GalleryButton count={l.photos.length} /> : null}

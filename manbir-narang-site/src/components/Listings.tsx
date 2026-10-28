@@ -50,7 +50,7 @@ function Card({ l }: { l: Listing }) {
         {l.sqft > 0 ? <span><Icon d={I.area} />{l.sqft.toLocaleString("en-CA")} ft²</span> : null}
       </div>
       <div className="lag">
-        <div className="who"><i className="av" />Manbir Narang</div>
+        {l.listedBy ? <div className="who whob">Listed by {l.listedBy}</div> : <div className="who"><i className="av" />Manbir Narang</div>}
         <ShareButton path={`/${l.slug}`} title={l.title} text={`${l.title}, ${money(l.price)}. ${l.location}`} />
       </div>
     </article>

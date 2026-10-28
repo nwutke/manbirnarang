@@ -360,3 +360,5 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .bkbtns{flex-direction:column;flex:none;min-width:260px}
 .bkbtns .btn{text-align:center}
 @media(max-width:900px){.bkbtns{min-width:0;width:100%;flex-direction:row}}
+.lhcourtesy{margin:10px 0 0;color:var(--gl);font-size:14px;letter-spacing:.02em}
+.whob{font:400 14px var(--f-han),sans-serif;color:#6175AE}
