@@ -8,7 +8,7 @@ import { CATEGORIES, STATUSES, money, type Listing } from "@/lib/types";
 type Inquiry = { id: string; created_at: string; kind: string; name: string; email: string; phone: string | null; address: string | null; interest: string | null; message: string | null };
 
 const empty = {
-  id: "", title: "", location: "", price: "", status: "New listing", category: "Lakefront", beds: "3", baths: "2", sqft: "",
+  id: "", title: "", location: "", price: "", status: "New listing", category: "Homes", beds: "3", baths: "2", sqft: "",
   description: "", photos: [] as string[], featured: true, published: true, sort: "0",
 };
 type Form = typeof empty;

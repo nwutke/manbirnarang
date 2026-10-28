@@ -13,9 +13,9 @@ export const SEED_LISTINGS: Listing[] = [
   { id: "seed-6", title: "Cherry Creek Country Estate", location: "Cherry Creek", price: 1150000, status: "Sold", category: "Acreage", beds: 4, baths: 3, sqft: 3400, description: "An exceptional country estate on eight acres with a spacious home, outbuildings, and room to roam ...", photos: ["/images/listing-6.jpg"], photoCount: 18, featured: true, published: true, sort: 6 },
 ];
 
-export const PHONE = "250-000-0000";
-export const EMAIL = "manbir@example.com";
-export const OFFICE = "RE/MAX Mid-Island Realty, Port Alberni";
+export const PHONE = "250-720-5509";
+export const EMAIL = "manbirnarangrealestate@gmail.com";
+export const OFFICE = "RE/MAX Mid-Island Realty, 4201 Johnston Road, Port Alberni";
 
 export const HOODS = [
   { cls: "h1 pf1", name: "Sproat Lake", text: "Warm, calm water, sandy shores, and some of the valley’s most sought-after lakefront homes.", avg: "From $900K", life: "Lakefront", count: "4 homes" },
