@@ -56,7 +56,7 @@ export default function Admin() {
     const f = new FormData(e.currentTarget);
     setMsg("");
     const { error } = await sb!.auth.signInWithPassword({ email: String(f.get("email")), password: String(f.get("password")) });
-    if (error) setMsg("Sign-in failed. Check your email and password.");
+    if (error) setMsg("Sign-in failed: " + error.message);
   }
 
   if (!signedIn) {
