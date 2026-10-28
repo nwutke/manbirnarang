@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { siteUrl } from "@/lib/site";
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -31,7 +32,7 @@ const hanken = localFont({
   display: "block",
 });
 
-const site = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+const site = siteUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(site),
