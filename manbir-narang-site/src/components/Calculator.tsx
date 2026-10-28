@@ -18,7 +18,7 @@ export default function Calculator() {
   const extra = num(v.tax) / 12 + num(v.fee);
 
   const field = (label: string, k: keyof typeof v) => (
-    <label className="in">
+    <label className="cin">
       <span>{label}</span>
       <input value={v[k]} onChange={set(k)} inputMode="decimal" />
     </label>
