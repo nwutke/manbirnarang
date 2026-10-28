@@ -31,7 +31,11 @@ export default function PropertySearch({ listings }: { listings: Listing[] }) {
 
   const areas = useMemo(() => {
     const m = new Map<string, number>();
-    listings.forEach((l) => m.set(areaOf(l), (m.get(areaOf(l)) ?? 0) + 1));
+    listings.forEach((l) => {
+      const area = areaOf(l);
+      if (!area) return;
+      m.set(area, (m.get(area) ?? 0) + 1);
+    });
     return [...m.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
   }, [listings]);
   const types = useMemo(() => CATEGORIES.filter((c) => listings.some((l) => l.category === c)), [listings]);
@@ -43,8 +47,8 @@ export default function PropertySearch({ listings }: { listings: Listing[] }) {
         (l) =>
           (f.areas.length === 0 || f.areas.includes(areaOf(l))) &&
           (!f.type || l.category === f.type) &&
-          (!f.min || l.price >= f.min) &&
-          (!f.max || l.price <= f.max) &&
+          (!f.min || (l.price > 0 && l.price >= f.min)) &&
+          (!f.max || (l.price > 0 && l.price <= f.max)) &&
           (!f.beds || l.beds >= f.beds) &&
           (!f.baths || l.baths >= f.baths) &&
           (!f.isNew || daysAgo(l.listedOn) <= 10)

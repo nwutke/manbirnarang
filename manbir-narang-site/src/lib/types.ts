@@ -3,6 +3,8 @@ export type Listing = {
   title: string;
   location: string;
   price: number;
+  /** Set when the source price is not a plain dollar amount, for example "$2,500 Monthly". */
+  priceLabel?: string | null;
   status: string; // e.g. "New listing", "Open house Sat", "Price improved", "Just listed", "Sold"
   category: string; // Homes | Lakefront | Waterfront | Acreage | Estates | Condos | Commercial
   beds: number;

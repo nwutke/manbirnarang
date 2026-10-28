@@ -65,6 +65,38 @@ cp .env.example .env.local   # then fill in the values
 npm run dev                  # http://localhost:3000
 ```
 
+## Brokerage listings on the Properties page
+
+Cards for other RE/MAX Mid-Island Realty listings are read from `content/brokerage-listings.json`. Manbir's own listings still come from Supabase and stay first. Each brokerage card opens that listing's own page in a new tab. The page already paginates at 12 cards, so a full set of about 240 listings stays fast.
+
+Cloudflare blocks scrapes of [midislandrealty.com/all-listings/](https://midislandrealty.com/all-listings/) from this repo's machines and from Vercel. Refresh the file from a computer that can open that page:
+
+1. Collect every current listing. The page may paginate or load more; include all of them.
+2. Replace `content/brokerage-listings.json`. Keep `"enabled": true`. Copy only address, city, price, beds, baths, sqft, photo URL, the listing's own URL, and MLS number when the page actually shows them. Leave a field out when it does not. Do not invent values.
+3. From `manbir-narang-site/`, run `npm run check:brokerage`, then commit the JSON.
+
+```json
+{
+  "enabled": true,
+  "updated": "2026-10-28",
+  "listings": [
+    {
+      "address": "1174 Front St",
+      "city": "Ucluelet",
+      "price": 329000,
+      "beds": 3,
+      "baths": 2,
+      "sqft": 1372,
+      "photo": "https://photos.prod.cirrussystem.net/example.jpeg",
+      "listingUrl": "https://midislandrealty.com/example-listing/",
+      "mls": "1053099"
+    }
+  ]
+}
+```
+
+`listingUrl` is required and must be an `https://` link to that listing. Every other field is optional. A price the page writes out in words (for example `$2,500 Monthly`) can be a string. `photo` may instead be a `photos` array; only the first image is shown. Older rows that use `area`, `photos`, and `listingAgent` still load. `next.config.ts` allows `next/image` to load only the photo hostnames present in this file.
+
 ## Notes
 
 - The site works without Supabase connected (it shows the sample listings and the forms say they are not connected), so you can preview it first.

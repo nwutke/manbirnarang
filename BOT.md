@@ -22,9 +22,11 @@ Each commit to `main` triggers a Vercel deploy. Before building, `scripts/check-
 
 ## Coverage
 
-Include **every** active for-sale listing where RE/MAX Mid-Island Realty (including the Ucluelet office) is the listing brokerage: about 240 homes across Port Alberni, Sproat Lake, Beaver Creek, Cherry Creek, Ucluelet, Tofino and Bamfield. Leave out rentals.
+Include **every** current listing on https://midislandrealty.com/all-listings/ where RE/MAX Mid-Island Realty (including the Ucluelet office) is the listing brokerage: about 240 listings across Port Alberni, Sproat Lake, Beaver Creek, Cherry Creek, Ucluelet, Tofino and Bamfield, for sale and for rent. Leave out other brokerages.
 
-These listings appear as **cards only**. They do not get their own pages on manbirnarang.ca. Clicking a card, or its "Contact agent" button, opens `listingUrl` on remax.ca. So each listing only needs what the card shows: **one cover photo**, address, area, price, beds, baths, sqft, category, listing agent and the remax.ca link. Description, features, extra photos, lot size, year built and taxes are optional and not shown.
+These listings appear as **cards only**. They do not get their own pages on manbirnarang.ca. Clicking a card, or its "Contact agent" button, opens `listingUrl` on **midislandrealty.com** (that listing's own page, in a new tab). Copy only what that page shows. Leave a field out when it is missing. Do not invent a photo, agent, price, bed or bath count, category, or status.
+
+Cloudflare blocks midislandrealty.com from this repo's machines and from Vercel. Refresh the JSON from a computer that can open the all-listings page, including every later page or "load more" result, then run `npm run check:brokerage` inside `manbir-narang-site/`.
 
 On the Properties page, Manbir's own listings always show first, followed by these listings in the order they appear in the file. Put the newest listings first.
 
@@ -36,24 +38,15 @@ On the Properties page, Manbir's own listings always show first, followed by the
   "updated": "2026-10-29",
   "listings": [
     {
-      "mls": "1053099",
       "address": "5453 Woodland Crescent",
-      "area": "Port Alberni",
+      "city": "Port Alberni",
       "price": 389900,
-      "status": "For sale",
-      "category": "Homes",
       "beds": 2,
       "baths": 2,
       "sqft": 1111,
-      "lotSize": "0.12 acres",
-      "yearBuilt": 1978,
-      "taxes": 2450,
-      "description": "Full listing description...",
-      "features": ["Heat pump", "Fenced yard"],
-      "photos": ["https://.../1053099-1.jpg", "https://.../1053099-2.jpg"],
-      "listingAgent": "Kelly Malone",
-      "listingUrl": "https://www.remax.ca/bc/port-alberni-real-estate/5453-woodland-cres-w-wp_idm73000004-30446369-lst",
-      "listedOn": "2026-10-27"
+      "photo": "https://photos.prod.cirrussystem.net/example.jpeg",
+      "listingUrl": "https://midislandrealty.com/example-listing/",
+      "mls": "1053099"
     }
   ]
 }
@@ -61,18 +54,13 @@ On the Properties page, Manbir's own listings always show first, followed by the
 
 | Field | Required | Notes |
 |---|---|---|
-| `mls` | yes | MLS® number as text. Must be unique. |
-| `address` | yes | Street address without city. |
-| `slug` | no | Only needed if two listings have the same address. |
-| `area` | yes | e.g. `Port Alberni`, `Sproat Lake`, `Beaver Creek`, `Cherry Creek`. |
-| `price` | yes | Number, no `$` or commas. |
-| `status` | no | `For sale` (default), `New listing`, `Price improved`, `Open house Sat`. |
-| `category` | no | One of `Homes` (default), `Lakefront`, `Waterfront`, `Acreage`, `Estates`, `Condos`, `Commercial`. |
-| `beds`, `baths`, `sqft`, `yearBuilt`, `taxes` | no | Numbers. Use `0` or leave out if unknown. |
-| `lotSize` | no | Text, e.g. `0.23 acres`. |
-| `description` | no | Plain text. Blank lines separate paragraphs. |
-| `features` | no | List of short text items. |
-| `photos` | yes | At least one `https://` image URL. Only the first (the cover photo) is shown. |
-| `listingAgent` | yes | The listing agent's name. Shown as "Listed by …" on the site. |
-| `listingUrl` | **yes** | The listing's page on **remax.ca**. The card and its "Contact agent" button open this link. |
-| `listedOn` | no | Date the listing went on the market (YYYY-MM-DD). Powers the "New (last 10 days)" filter. |
+| `listingUrl` | **yes** | That listing's own `https://` page on **midislandrealty.com**. The card and its "Contact agent" button open this link in a new tab. Must be unique. |
+| `address` | no | Street address, as shown. Leave out if the page has none. |
+| `city` | no | City or area as shown, e.g. `Port Alberni`, `Ucluelet`. `area` is still accepted. |
+| `price` | no | Number, no `$` or commas. If the page's price is not a plain amount (`$2,500 Monthly`), store that text instead. |
+| `beds`, `baths`, `sqft` | no | Numbers, only when the page shows them. Leave the field out when it does not. Do not write `0` as a guess. |
+| `photo` | no | One `https://` cover image. `photos` (a list) is still accepted; only the first is shown. |
+| `mls` | no | MLS® number as text, when the page shows one. Must be unique. |
+| `listingAgent` | no | Only when the page names the agent. Shown as "Listed by …". |
+| `status` | no | Only the words the page uses, e.g. `For sale`, `For rent`, `Open house`. Do not default this. |
+| `category` | no | Only if it is one of `Homes`, `Lakefront`, `Waterfront`, `Acreage`, `Estates`, `Condos`, `Commercial`. |
