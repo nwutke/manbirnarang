@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import EnquiryForm from "@/components/EnquiryForm";
 import Gallery, { GalleryButton } from "@/components/Gallery";
+import ShareButton from "@/components/ShareButton";
 import { Orn } from "@/components/ui";
 import { EMAIL, OFFICE, PHONE } from "@/lib/data";
 import { getListingBySlug, getListings } from "@/lib/listings";
@@ -138,6 +139,7 @@ export default async function ListingPage({ params }: Props) {
               </div>
               <a href="#contact" className="btn">Contact Manbir</a>
               <a href={tel} className="btn o">Call {PHONE}</a>
+              <ShareButton path={`/${l.slug}`} title={l.title} text={`${l.title}, ${money(l.price)}. ${l.location}`} variant="full" />
               <a href={`mailto:${EMAIL}?subject=${encodeURIComponent(l.title)}`} className="lmail">{EMAIL}</a>
             </div>
           </aside>

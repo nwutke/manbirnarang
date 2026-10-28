@@ -2,15 +2,13 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import ShareButton from "./ShareButton";
 import { CATEGORIES, money, type Listing } from "@/lib/types";
 
 const I = {
   bed: <path d="M3 18v-7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v7M3 15h18M7 9V6h10v3" />,
   bath: <path d="M4 12h16v2a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5v-2zM6 12V6a2 2 0 0 1 4 0M7 19l-1 2M17 19l1 2" />,
   area: (<><path d="M4 8V4h4M16 4h4v4M20 16v4h-4M8 20H4v-4" /><rect x="8" y="8" width="8" height="8" /></>),
-  share: (<><circle cx="18" cy="5" r="2.5" /><circle cx="6" cy="12" r="2.5" /><circle cx="18" cy="19" r="2.5" /><path d="M8.2 10.8l7.6-4.6M8.2 13.2l7.6 4.6" /></>),
-  heart: <path d="M12 20s-7-4.4-9-9a5 5 0 0 1 9-3 5 5 0 0 1 9 3c-2 4.6-9 9-9 9z" />,
-  plus: <path d="M12 5v14M5 12h14" />,
   pin: <path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" />,
   cam: <path d="M4 7h3l2-3h6l2 3h3a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1zm8 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" />,
 };
@@ -28,7 +26,8 @@ function Card({ l }: { l: Listing }) {
   const cover = l.photos[0];
   const bg = cover ? { background: `url("${cover}") 50% 50%/cover no-repeat` } : undefined;
   return (
-    <Link href={`/${l.slug}`} className="lc lcl" aria-label={`${l.title}, ${money(l.price)}`}>
+    <article className="lc lcl">
+      <Link href={`/${l.slug}`} className="lcover" aria-label={`${l.title}, ${money(l.price)}`} />
       <div className="ph2 f1" style={bg}>
         <div className="bd">
           {l.featured ? <span className="pill">Featured</span> : <span />}
@@ -52,13 +51,9 @@ function Card({ l }: { l: Listing }) {
       </div>
       <div className="lag">
         <div className="who"><i className="av" />Manbir Narang</div>
-        <div className="ab">
-          <i><Icon d={I.share} /></i>
-          <i><Icon d={I.heart} /></i>
-          <i><Icon d={I.plus} /></i>
-        </div>
+        <ShareButton path={`/${l.slug}`} title={l.title} text={`${l.title}, ${money(l.price)}. ${l.location}`} />
       </div>
-    </Link>
+    </article>
   );
 }
 
