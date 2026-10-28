@@ -1,7 +1,14 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 
-const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+/** Keep only the project origin, so a pasted URL like ".../rest/v1/" still works. */
+function cleanUrl(raw: string | undefined): string | undefined {
+  const v = raw?.trim().replace(/^["']|["']$/g, "");
+  if (!v) return undefined;
+  try { return new URL(v).origin; } catch { return undefined; }
+}
+
+const url = cleanUrl(process.env.NEXT_PUBLIC_SUPABASE_URL);
+const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.trim().replace(/^["']|["']$/g, "");
 
 export const supabaseConfigured = Boolean(url && key);
 
