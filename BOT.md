@@ -10,7 +10,7 @@ Each commit to `main` triggers a Vercel deploy. Before building, `scripts/check-
 
 ## Rules
 
-1. **Do not change `"enabled"`.** It stays `false` until Manbir has written permission from his managing broker. A person flips it to `true`.
+1. **Do not change `"enabled"`.** It is `true` (Manbir's managing broker approved on 2026-10-28). Only a person changes it.
 2. **Only include listings where RE/MAX Mid-Island Realty is the listing brokerage.** Never include listings from other brokerages.
 3. **Skip Manbir Narang's own listings.** He manages those in the site admin. (The site also filters them out by MLS number and agent name as a safety net.)
 4. **Remove a listing** when it is sold, expired, cancelled or no longer shown on the brokerage site. Do not keep sold listings.
@@ -30,7 +30,7 @@ On the Properties page, Manbir's own listings always show first, followed by the
 
 ```json
 {
-  "enabled": false,
+  "enabled": true,
   "updated": "2026-10-29",
   "listings": [
     {
