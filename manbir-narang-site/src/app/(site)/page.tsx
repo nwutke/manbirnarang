@@ -8,6 +8,7 @@ import { Btn, SectionHead, Testimonials } from "@/components/ui";
 import { getListings } from "@/lib/listings";
 import { EMAIL, HOODS, OFFICE, PHONE, STATS5, TESTIMONIALS } from "@/lib/data";
 import PostCard from "@/components/PostCard";
+import BrokerageListings from "@/components/BrokerageListings";
 import { getPosts } from "@/lib/posts";
 
 export const revalidate = 60;
@@ -48,9 +49,11 @@ export default async function Home() {
           <SectionHead title="Featured listings" sub="Homes, lakefront, and acreage across the Alberni Valley." />
         </div>
         <Listings listings={listings} limit={6} />
-        <div className="c" style={{ padding: "64px 0 112px" }}>
+        <div className="c" style={{ padding: "64px 0 72px" }}>
           <Btn href="/properties" solid>View all listings</Btn>
         </div>
+        <BrokerageListings />
+        <div style={{ height: 112 }} />
       </section>
 
       <section className="iv">

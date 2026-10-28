@@ -343,3 +343,20 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
   .pmore h2{font-size:30px}
   .pmore .w{padding:0 16px}
 }
+
+/* Brokerage listings banner */
+.bkw{display:block!important;text-align:left!important}
+.bks{position:relative;overflow:hidden}
+.bks:before{content:"";position:absolute;inset:0;background:url(/images/listing-2.jpg) 50% 50%/cover no-repeat;opacity:.16;pointer-events:none}
+.bks>*{position:relative}
+.bkeye{font:500 11px var(--f-cin),serif;letter-spacing:.24em;text-transform:uppercase;color:var(--gl);margin-bottom:10px}
+.bks p{max-width:560px}
+.bkbtns{display:flex;flex-wrap:wrap;gap:12px}
+.bkbtns .btn{margin:0}
+@media(max-width:900px){.bks{flex-direction:column;align-items:flex-start}}
+@media(max-width:700px){.bkw{padding:0 16px!important}.bks{padding:30px 22px}.bks h3{font-size:28px}.bkbtns{width:100%}.bkbtns .btn{flex:1 1 100%;text-align:center}}
+.iv .bks .btn.o,.bks .btn.o{color:var(--gl);border-color:var(--gold)}
+.iv .bks .btn.o:hover{color:#1A1208}
+.bkbtns{flex-direction:column;flex:none;min-width:260px}
+.bkbtns .btn{text-align:center}
+@media(max-width:900px){.bkbtns{min-width:0;width:100%;flex-direction:row}}
