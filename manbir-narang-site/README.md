@@ -67,35 +67,22 @@ npm run dev                  # http://localhost:3000
 
 ## Brokerage listings on the Properties page
 
-Cards for other RE/MAX Mid-Island Realty listings are read from `content/brokerage-listings.json`. Manbir's own listings still come from Supabase and stay first. Each brokerage card opens that listing's own page in a new tab. The page already paginates at 12 cards, so a full set of about 240 listings stays fast.
+Cards for the other RE/MAX Mid-Island Realty listings are read from `content/brokerage-listings.json`. Manbir's own listings still come from Supabase and stay first. Each brokerage card opens that listing's page on midislandrealty.com in a new tab. The Properties page shows 12 cards at a time.
 
-Cloudflare blocks scrapes of [midislandrealty.com/all-listings/](https://midislandrealty.com/all-listings/) from this repo's machines and from Vercel. Refresh the file from a computer that can open that page:
+The JSON is a list, one object per listing, in the same order as https://midislandrealty.com/all-listings/. The scrape on 28 Oct 2026 matched the site's own "243 results". Address, city, price, price text, property type, MLS number, photo, and the listing URL are on every row. Beds, baths, and interior sqft are only on the rows where the site showed them (about 143 to 150). They are missing mostly for vacant land and commercial listings, and the card leaves them off. Nothing is filled in.
 
-1. Collect every current listing. The page may paginate or load more; include all of them.
-2. Replace `content/brokerage-listings.json`. Keep `"enabled": true`. Copy only address, city, price, beds, baths, sqft, photo URL, the listing's own URL, and MLS number when the page actually shows them. Leave a field out when it does not. Do not invent values.
-3. From `manbir-narang-site/`, run `npm run check:brokerage`, then commit the JSON.
+Photos are on `ddfcdn.realtor.ca`. `next.config.ts` allows `next/image` only for that host, and only under `/listings/`.
 
-```json
-{
-  "enabled": true,
-  "updated": "2026-10-28",
-  "listings": [
-    {
-      "address": "1174 Front St",
-      "city": "Ucluelet",
-      "price": 329000,
-      "beds": 3,
-      "baths": 2,
-      "sqft": 1372,
-      "photo": "https://photos.prod.cirrussystem.net/example.jpeg",
-      "listingUrl": "https://midislandrealty.com/example-listing/",
-      "mls": "1053099"
-    }
-  ]
-}
+Cloudflare blocks this site from cloud VMs and from Vercel, so refresh the file on a computer that can open the listings page. From `manbir-narang-site/`:
+
+```bash
+python3 scripts/scrape_midisland.py content/brokerage-listings.json
+npm run check:brokerage
 ```
 
-`listingUrl` is required and must be an `https://` link to that listing. Every other field is optional. A price the page writes out in words (for example `$2,500 Monthly`) can be a string. `photo` may instead be a `photos` array; only the first image is shown. Older rows that use `area`, `photos`, and `listingAgent` still load. `next.config.ts` allows `next/image` to load only the photo hostnames present in this file.
+The script is Python 3 standard library only. It reads `/all-listings/page/N/` (the `?page=` query is ignored by the site), then each listing page, and takes about 5 minutes. Details, including why the WordPress REST API is not used, are in `scripts/brokerage-listings-SOURCE.md`. The script also writes `content/brokerage-listings-meta.json` (site total, count, failures, timestamp). That file is gitignored.
+
+To hide the brokerage cards without deleting the list, wrap the array as `{ "enabled": false, "listings": [ ... ] }`.
 
 ## Notes
 

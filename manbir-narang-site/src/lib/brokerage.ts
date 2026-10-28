@@ -8,13 +8,16 @@ import { CATEGORIES, slugify, type Listing } from "./types";
  */
 type BotListing = {
   mls?: string;
+  mlsNumber?: string;
   address?: string;
   slug?: string;
   area?: string;
   city?: string;
   price?: number | string | null;
+  priceText?: string;
   status?: string;
   category?: string;
+  propertyType?: string;
   beds?: number | string | null;
   baths?: number | string | null;
   sqft?: number | string | null;
@@ -34,9 +37,11 @@ type BotListing = {
 
 type FileShape = { enabled?: boolean; updated?: string; listings?: BotListing[] };
 
-const data = FILE as FileShape;
+const file = FILE as FileShape | BotListing[];
+const listings: BotListing[] = Array.isArray(file) ? file : (file.listings ?? []);
 
-export const brokerageEnabled = data.enabled === true;
+/** A bare array (the scraper output) is shown. A wrapper can set "enabled": false to hide the cards. */
+export const brokerageEnabled = Array.isArray(file) ? listings.length > 0 : file.enabled === true;
 
 const HTTPS = /^https:\/\/\S+$/;
 
@@ -83,8 +88,10 @@ function photosOf(b: BotListing): string[] {
   return found.slice(0, 1);
 }
 
-function categoryOf(v: unknown): string {
-  const c = text(v);
+function categoryOf(b: BotListing): string {
+  const fromSource = text(b.propertyType);
+  if (fromSource) return fromSource;
+  const c = text(b.category);
   return (CATEGORIES as readonly string[]).includes(c) ? c : "";
 }
 
@@ -94,20 +101,20 @@ function categoryOf(v: unknown): string {
  * Empty while "enabled" is false in content/brokerage-listings.json.
  */
 export function getBrokerageListings(own: Listing[] = []): Listing[] {
-  if (!brokerageEnabled || !Array.isArray(data.listings)) return [];
+  if (!brokerageEnabled) return [];
   const ownMls = new Set(own.map((l) => l.mls).filter(Boolean));
   const ownSlugs = new Set(own.map((l) => l.slug));
   const seenUrl = new Set<string>();
   const seenMls = new Set<string>();
   const out: Listing[] = [];
 
-  data.listings.forEach((b, i) => {
+  listings.forEach((b, i) => {
     if (!b || typeof b !== "object") return;
     const listingUrl = text(b.listingUrl) || text(b.url);
     if (!HTTPS.test(listingUrl) || seenUrl.has(listingUrl)) return;
     const agent = text(b.listingAgent);
     if (agent && /manbir\s+narang/i.test(agent)) return;
-    const mls = text(b.mls);
+    const mls = text(b.mlsNumber) || text(b.mls);
     if (mls && (ownMls.has(mls) || seenMls.has(mls))) return;
     if (mls) seenMls.add(mls);
     const address = text(b.address);
@@ -115,17 +122,20 @@ export function getBrokerageListings(own: Listing[] = []): Listing[] {
     if (slug && ownSlugs.has(slug)) return;
     seenUrl.add(listingUrl);
 
-    const { price, priceLabel } = priceOf(b.price);
+    const parsed = priceOf(b.price);
+    const price = parsed.price;
+    const priceText = text(b.priceText);
     const photos = photosOf(b);
+    const propertyType = text(b.propertyType);
 
     out.push({
       id: "brk-" + (mls || slugify(listingUrl) || String(i)),
       title: address,
       location: text(b.city) || text(b.area),
       price,
-      priceLabel,
-      status: text(b.status),
-      category: categoryOf(b.category),
+      priceLabel: priceText || parsed.priceLabel,
+      status: text(b.status) || propertyType,
+      category: categoryOf(b),
       beds: count(b.beds),
       baths: count(b.baths),
       sqft: count(b.sqft),

@@ -10,7 +10,7 @@ Each commit to `main` triggers a Vercel deploy. Before building, `scripts/check-
 
 ## Rules
 
-1. **Do not change `"enabled"`.** It is `true` (Manbir's managing broker approved on 2026-10-28). Only a person changes it.
+1. **Do not hide the cards.** The file is a JSON array and is shown as-is. Only a person sets `"enabled": false` by wrapping it.
 2. **Only include listings where RE/MAX Mid-Island Realty is the listing brokerage.** Never include listings from other brokerages.
 3. **Skip Manbir Narang's own listings.** He manages those in the site admin. (The site also filters them out by MLS number and agent name as a safety net.)
 4. **Remove a listing** when it is sold, expired, cancelled or no longer shown on the brokerage site. Do not keep sold listings.
@@ -18,13 +18,13 @@ Each commit to `main` triggers a Vercel deploy. Before building, `scripts/check-
 6. **Only edit this one file.** Do not touch any other file in the repo.
 7. **One commit per run**, only if something changed, with a message like:
    `Brokerage listings: +2 new, 1 price change, -1 sold (2026-10-29)`
-8. Update `"updated"` to today's date (YYYY-MM-DD) whenever you commit.
+8. Prefer regenerating the whole file with `python3 scripts/scrape_midisland.py content/brokerage-listings.json` from an unblocked machine (see `scripts/brokerage-listings-SOURCE.md`). Cloudflare blocks cloud VMs. Do not commit the meta file the script writes beside the JSON.
 
 ## Coverage
 
 Include **every** current listing on https://midislandrealty.com/all-listings/ where RE/MAX Mid-Island Realty (including the Ucluelet office) is the listing brokerage: about 240 listings across Port Alberni, Sproat Lake, Beaver Creek, Cherry Creek, Ucluelet, Tofino and Bamfield, for sale and for rent. Leave out other brokerages.
 
-These listings appear as **cards only**. They do not get their own pages on manbirnarang.ca. Clicking a card, or its "Contact agent" button, opens `listingUrl` on **midislandrealty.com** (that listing's own page, in a new tab). Copy only what that page shows. Leave a field out when it is missing. Do not invent a photo, agent, price, bed or bath count, category, or status.
+These listings appear as **cards only**. They do not get their own pages on manbirnarang.ca. Clicking a card, or its "Contact agent" button, opens `url` on **midislandrealty.com** (that listing's own page, in a new tab). Copy only what that page shows. Leave a field out when it is missing. Do not invent a photo, price, bed or bath count, or property type.
 
 Cloudflare blocks midislandrealty.com from this repo's machines and from Vercel. Refresh the JSON from a computer that can open the all-listings page, including every later page or "load more" result, then run `npm run check:brokerage` inside `manbir-narang-site/`.
 
@@ -32,35 +32,30 @@ On the Properties page, Manbir's own listings always show first, followed by the
 
 ## File format
 
+The scraper writes a JSON array. `url` is that listing's own page on midislandrealty.com. The card and its "Contact agent" button open it in a new tab.
+
 ```json
-{
-  "enabled": true,
-  "updated": "2026-10-29",
-  "listings": [
-    {
-      "address": "5453 Woodland Crescent",
-      "city": "Port Alberni",
-      "price": 389900,
-      "beds": 2,
-      "baths": 2,
-      "sqft": 1111,
-      "photo": "https://photos.prod.cirrussystem.net/example.jpeg",
-      "listingUrl": "https://midislandrealty.com/example-listing/",
-      "mls": "1053099"
-    }
-  ]
-}
+[
+  {
+    "address": "1174 Front St",
+    "city": "Ucluelet",
+    "price": 329000,
+    "priceText": "$329,000",
+    "propertyType": "Vacant Land",
+    "mlsNumber": "1033596",
+    "photo": "https://ddfcdn.realtor.ca/listings/example/1033596_1.jpg",
+    "url": "https://midislandrealty.com/listing/1174-front-st-ucluelet-british-columbia-v0r-3a0-29697392/"
+  }
+]
 ```
 
 | Field | Required | Notes |
 |---|---|---|
-| `listingUrl` | **yes** | That listing's own `https://` page on **midislandrealty.com**. The card and its "Contact agent" button open this link in a new tab. Must be unique. |
-| `address` | no | Street address, as shown. Leave out if the page has none. |
-| `city` | no | City or area as shown, e.g. `Port Alberni`, `Ucluelet`. `area` is still accepted. |
-| `price` | no | Number, no `$` or commas. If the page's price is not a plain amount (`$2,500 Monthly`), store that text instead. |
-| `beds`, `baths`, `sqft` | no | Numbers, only when the page shows them. Leave the field out when it does not. Do not write `0` as a guess. |
-| `photo` | no | One `https://` cover image. `photos` (a list) is still accepted; only the first is shown. |
-| `mls` | no | MLS® number as text, when the page shows one. Must be unique. |
-| `listingAgent` | no | Only when the page names the agent. Shown as "Listed by …". |
-| `status` | no | Only the words the page uses, e.g. `For sale`, `For rent`, `Open house`. Do not default this. |
-| `category` | no | Only if it is one of `Homes`, `Lakefront`, `Waterfront`, `Acreage`, `Estates`, `Condos`, `Commercial`. |
+| `url` | **yes** | That listing's own `https://` page on **midislandrealty.com**. Must be unique. |
+| `address`, `city` | no | As shown. Leave out if the page has none. |
+| `price` | no | Number, no `$` or commas. |
+| `priceText` | no | The price as the page writes it, including `$2,500 Monthly`. The card shows this text. |
+| `propertyType` | no | The detail page's property type, shown on the card. Do not remap it. |
+| `beds`, `baths`, `sqft` | no | Numbers, only when the results card shows them. Leave the field out when it does not. Do not write `0` as a guess. |
+| `photo` | no | One `https://` cover image. Current photos are on `ddfcdn.realtor.ca`. |
+| `mlsNumber` | no | MLS® number as text. Must be unique. Used to skip a listing Manbir already publishes. |

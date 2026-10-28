@@ -14,18 +14,25 @@ try { data = JSON.parse(readFileSync(FILE, "utf8")); }
 catch (e) { console.error("brokerage-listings.json is not valid JSON:", e.message); process.exit(1); }
 
 const errors = [];
-if (!data || typeof data !== "object" || Array.isArray(data)) {
-  console.error(`\nbrokerage-listings.json has 1 problem(s):\n - the file must be an object with "enabled" and "listings"\n`);
+let enabled = true;
+let listings;
+if (Array.isArray(data)) {
+  listings = data;
+} else if (data && typeof data === "object") {
+  if (typeof data.enabled !== "boolean") errors.push(`"enabled" must be true or false`);
+  else enabled = data.enabled;
+  if (data.updated !== undefined && !/^\d{4}-\d{2}-\d{2}$/.test(data.updated)) errors.push(`"updated" must be a date like 2026-10-28`);
+  if (!Array.isArray(data.listings)) errors.push(`"listings" must be a list`);
+  listings = data.listings;
+} else {
+  console.error(`\nbrokerage-listings.json has 1 problem(s):\n - the file must be a list of listings, or an object with "enabled" and "listings"\n`);
   process.exit(1);
 }
-if (typeof data.enabled !== "boolean") errors.push(`"enabled" must be true or false`);
-if (data.updated !== undefined && !/^\d{4}-\d{2}-\d{2}$/.test(data.updated)) errors.push(`"updated" must be a date like 2026-10-28`);
-if (!Array.isArray(data.listings)) errors.push(`"listings" must be a list`);
 
 const seenMls = new Set();
 const seenUrl = new Set();
 const hosts = new Set();
-(data.listings || []).forEach((l, i) => {
+(listings || []).forEach((l, i) => {
   const at = `listings[${i}]${l && l.address ? ` (${l.address})` : ""}`;
   if (!l || typeof l !== "object" || Array.isArray(l)) return errors.push(`${at}: must be an object`);
 
@@ -34,11 +41,14 @@ const hosts = new Set();
   else if (seenUrl.has(listingUrl)) errors.push(`${at}: listing URL appears twice`);
   else seenUrl.add(listingUrl);
 
-  if (l.mls != null && l.mls !== "") {
-    if (typeof l.mls !== "string" || !/^[A-Za-z0-9-]+$/.test(l.mls)) errors.push(`${at}: "mls" must be the MLS number as text`);
-    else if (seenMls.has(l.mls)) errors.push(`${at}: MLS ${l.mls} appears twice`);
-    else seenMls.add(l.mls);
+  const mls = l.mlsNumber || l.mls;
+  if (mls != null && mls !== "") {
+    if (typeof mls !== "string" || !/^[A-Za-z0-9-]+$/.test(mls)) errors.push(`${at}: "mlsNumber" must be the MLS number as text`);
+    else if (seenMls.has(mls)) errors.push(`${at}: MLS ${mls} appears twice`);
+    else seenMls.add(mls);
   }
+  if (l.priceText != null && (typeof l.priceText !== "string" || !l.priceText.trim())) errors.push(`${at}: "priceText" must be text`);
+  if (l.propertyType != null && (typeof l.propertyType !== "string" || !l.propertyType.trim())) errors.push(`${at}: "propertyType" must be text`);
 
   if (l.address != null && (typeof l.address !== "string" || !l.address.trim())) errors.push(`${at}: "address" must be text`);
   for (const key of ["city", "area"]) {
@@ -84,4 +94,4 @@ if (errors.length) {
   process.exit(1);
 }
 const hostList = [...hosts].sort().join(", ") || "none";
-console.log(`brokerage-listings.json OK: ${data.listings.length} listing(s), ${data.enabled ? "SHOWN on site" : "hidden (enabled: false)"}, photo hosts: ${hostList}`);
+console.log(`brokerage-listings.json OK: ${listings.length} listing(s), ${enabled ? "SHOWN on site" : "hidden (enabled: false)"}, photo hosts: ${hostList}`);

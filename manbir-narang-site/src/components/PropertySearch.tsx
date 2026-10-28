@@ -38,7 +38,12 @@ export default function PropertySearch({ listings }: { listings: Listing[] }) {
     });
     return [...m.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
   }, [listings]);
-  const types = useMemo(() => CATEGORIES.filter((c) => listings.some((l) => l.category === c)), [listings]);
+  const types = useMemo(() => {
+    const present = [...new Set(listings.map((l) => l.category).filter(Boolean))];
+    const known = CATEGORIES.filter((c) => present.includes(c));
+    const rest = present.filter((c) => !(CATEGORIES as readonly string[]).includes(c)).sort((a, b) => a.localeCompare(b));
+    return [...known, ...rest];
+  }, [listings]);
   const hasDates = useMemo(() => listings.some((l) => l.listedOn), [listings]);
 
   const results = useMemo(
