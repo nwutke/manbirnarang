@@ -47,6 +47,7 @@ export default async function ListingPage({ params }: Props) {
   const sold = l.status === "Sold";
   const cover = l.photos[0];
   const tel = `tel:${PHONE.replace(/\D/g, "")}`;
+  const agentUrl = l.listedBy && l.sourceUrl ? l.sourceUrl : null; // other agents' listings: contact goes to RE/MAX
   const facts: [string, string][] = (
     [
       ["Price", money(l.price)],
@@ -91,7 +92,11 @@ export default async function ListingPage({ params }: Props) {
           {specLine(l) ? <p className="lhspec">{specLine(l)}</p> : null}
           {l.listedBy ? <p className="lhcourtesy">Listing courtesy of {l.listedBy}, RE/MAX Mid-Island Realty</p> : null}
           <div className="lhbtns">
-            <a href="#contact" className="btn">Contact Manbir</a>
+            {agentUrl ? (
+              <a href={agentUrl} className="btn" target="_blank" rel="noopener noreferrer">Contact agent ↗</a>
+            ) : (
+              <a href="#contact" className="btn">Contact Manbir</a>
+            )}
             {l.photos.length > 1 ? <GalleryButton count={l.photos.length} /> : null}
           </div>
         </div>
@@ -133,22 +138,38 @@ export default async function ListingPage({ params }: Props) {
             <div className="lcard">
               <div className="lcprice">{money(l.price)}</div>
               {specLine(l) ? <p className="lcspec">{specLine(l)}</p> : null}
-              <div className="lagent">
-                <img src="/images/manbir.jpg" alt="" />
-                <div>
-                  <b>Manbir Narang</b>
-                  <span>REALTOR® · {OFFICE.split(",")[0]}</span>
-                </div>
-              </div>
-              <a href="#contact" className="btn">Contact Manbir</a>
-              <a href={tel} className="btn o">Call {PHONE}</a>
-              <ShareButton path={`/${l.slug}`} title={l.title} text={`${l.title}, ${money(l.price)}. ${l.location}`} variant="full" />
-              <a href={`mailto:${EMAIL}?subject=${encodeURIComponent(l.title)}`} className="lmail">{EMAIL}</a>
+              {agentUrl ? (
+                <>
+                  <div className="lagent">
+                    <div>
+                      <b>Listed by {l.listedBy}</b>
+                      <span>REALTOR® · RE/MAX Mid-Island Realty</span>
+                    </div>
+                  </div>
+                  <a href={agentUrl} className="btn" target="_blank" rel="noopener noreferrer">Contact agent ↗</a>
+                  <ShareButton path={`/${l.slug}`} title={l.title} text={`${l.title}, ${money(l.price)}. ${l.location}`} variant="full" />
+                </>
+              ) : (
+                <>
+                  <div className="lagent">
+                    <img src="/images/manbir.jpg" alt="" />
+                    <div>
+                      <b>Manbir Narang</b>
+                      <span>REALTOR® · {OFFICE.split(",")[0]}</span>
+                    </div>
+                  </div>
+                  <a href="#contact" className="btn">Contact Manbir</a>
+                  <a href={tel} className="btn o">Call {PHONE}</a>
+                  <ShareButton path={`/${l.slug}`} title={l.title} text={`${l.title}, ${money(l.price)}. ${l.location}`} variant="full" />
+                  <a href={`mailto:${EMAIL}?subject=${encodeURIComponent(l.title)}`} className="lmail">{EMAIL}</a>
+                </>
+              )}
             </div>
           </aside>
         </div>
       </section>
 
+      {agentUrl ? null : (
       <section className="lcontact" id="contact">
         <div className="w">
           <Orn />
@@ -160,11 +181,18 @@ export default async function ListingPage({ params }: Props) {
           <p className="lalt">Prefer to talk? Call <a href={tel}>{PHONE}</a></p>
         </div>
       </section>
+      )}
 
       {/* Mobile: contact bar fixed to the bottom of the screen */}
       <div className="lbar">
-        <a href={tel} className="btn o">Call</a>
-        <a href="#contact" className="btn">Contact Manbir</a>
+        {agentUrl ? (
+          <a href={agentUrl} className="btn" target="_blank" rel="noopener noreferrer">Contact agent ↗</a>
+        ) : (
+          <>
+            <a href={tel} className="btn o">Call</a>
+            <a href="#contact" className="btn">Contact Manbir</a>
+          </>
+        )}
       </div>
     </>
   );

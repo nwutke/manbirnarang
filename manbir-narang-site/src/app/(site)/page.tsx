@@ -9,6 +9,7 @@ import { getListings } from "@/lib/listings";
 import { EMAIL, HOODS, OFFICE, PHONE, STATS5, TESTIMONIALS } from "@/lib/data";
 import PostCard from "@/components/PostCard";
 import BrokerageListings from "@/components/BrokerageListings";
+import { getBrokerageListings } from "@/lib/brokerage";
 import { getPosts } from "@/lib/posts";
 
 export const revalidate = 60;
@@ -52,7 +53,7 @@ export default async function Home() {
         <div className="c" style={{ padding: "64px 0 72px" }}>
           <Btn href="/properties" solid>View all listings</Btn>
         </div>
-        <BrokerageListings />
+        <BrokerageListings internal={getBrokerageListings(listings).length > 0} />
         <div style={{ height: 112 }} />
       </section>
 

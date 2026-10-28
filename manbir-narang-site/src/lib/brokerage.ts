@@ -5,7 +5,7 @@ import { slugify, type Listing } from "./types";
 type BotListing = {
   mls: string; address: string; slug?: string; area: string; price: number; status?: string; category?: string;
   beds?: number; baths?: number; sqft?: number; lotSize?: string; yearBuilt?: number; taxes?: number;
-  description?: string; features?: string[]; photos: string[]; listingAgent: string; listingUrl?: string;
+  description?: string; features?: string[]; photos: string[]; listingAgent: string; listingUrl: string; listedOn?: string;
 };
 
 const data = FILE as { enabled: boolean; updated?: string; listings: BotListing[] };
@@ -45,7 +45,8 @@ export function getBrokerageListings(own: Listing[] = []): Listing[] {
       taxes: b.taxes ?? null,
       features: b.features ?? [],
       listedBy: b.listingAgent,
-      sourceUrl: b.listingUrl ?? null,
+      sourceUrl: b.listingUrl,
+      listedOn: b.listedOn ?? null,
     }))
     .filter((l) => !ownSlugs.has(l.slug));
 }

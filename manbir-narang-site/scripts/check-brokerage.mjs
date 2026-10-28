@@ -36,7 +36,8 @@ const seenMls = new Set(), seenSlug = new Set();
   else if (l.photos.length > 80) errors.push(`${at}: too many photos (max 80)`);
   else l.photos.forEach((u, j) => { if (!isUrl(u)) errors.push(`${at}: photos[${j}] must be an https:// URL`); });
   if (l.features !== undefined && !(Array.isArray(l.features) && l.features.every((f) => typeof f === "string"))) errors.push(`${at}: "features" must be a list of text`);
-  if (l.listingUrl !== undefined && l.listingUrl !== null && !isUrl(l.listingUrl)) errors.push(`${at}: "listingUrl" must be an https:// URL`);
+  if (!isUrl(l.listingUrl)) errors.push(`${at}: "listingUrl" (the RE/MAX listing page, used by "Contact agent") must be an https:// URL`);
+  if (l.listedOn !== undefined && l.listedOn !== null && !/^\d{4}-\d{2}-\d{2}$/.test(l.listedOn)) errors.push(`${at}: "listedOn" must be a date like 2026-10-28`);
   if (l.description !== undefined && typeof l.description !== "string") errors.push(`${at}: "description" must be text`);
 });
 

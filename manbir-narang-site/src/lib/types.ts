@@ -21,7 +21,8 @@ export type Listing = {
   taxes?: number | null;
   features: string[];
   listedBy?: string | null; // set for other agents' brokerage listings
-  sourceUrl?: string | null;
+  sourceUrl?: string | null; // the RE/MAX listing page ("Contact agent")
+  listedOn?: string | null; // YYYY-MM-DD, for the "New" filter
 };
 
 /** Turns a title or address into a web address: "2684 12th Avenue" -> "2684-12th-avenue". */

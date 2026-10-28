@@ -1,5 +1,214 @@
 {
   "enabled": true,
   "updated": "2026-10-28",
-  "listings": []
+  "listings": [
+    {
+      "mls": "1053099",
+      "address": "5453 Woodland Crescent",
+      "area": "Port Alberni",
+      "price": 389900,
+      "status": "For sale",
+      "category": "Homes",
+      "beds": 2,
+      "baths": 2,
+      "sqft": 1111,
+      "photos": [
+        "https://photos.prod.cirrussystem.net/2167/6a7ce444a86270597446bf5e623220d2/2874626391.jpeg?d=l"
+      ],
+      "listingAgent": "Kelly Malone",
+      "listingUrl": "https://www.remax.ca/bc/port-alberni-real-estate/5453-woodland-cres-w-wp_idm73000004-30446369-lst"
+    },
+    {
+      "mls": "1053053",
+      "address": "5546 Woodland Crescent",
+      "area": "Port Alberni",
+      "price": 849000,
+      "status": "For sale",
+      "category": "Homes",
+      "beds": 5,
+      "baths": 3,
+      "sqft": 2789,
+      "photos": [
+        "https://photos.prod.cirrussystem.net/2167/bc6d5492477c98fa4f81b5c7ccd3ea83/4037842768.jpeg?d=l"
+      ],
+      "listingAgent": "Denaye Melenius",
+      "listingUrl": "https://www.remax.ca/bc/port-alberni-real-estate/5546-woodland-cres-w-wp_idm73000004-30441128-lst"
+    },
+    {
+      "mls": "1052307",
+      "address": "7251 Thompson Road",
+      "area": "Port Alberni",
+      "price": 949900,
+      "status": "For sale",
+      "category": "Homes",
+      "beds": 4,
+      "baths": 2,
+      "sqft": 2629,
+      "photos": [
+        "https://photos.prod.cirrussystem.net/2167/d9e42e64faf38b9ee1136dd2872d7bad/3885018816.jpeg?d=l"
+      ],
+      "listingAgent": "Sonja Sutton",
+      "listingUrl": "https://www.remax.ca/bc/port-alberni-real-estate/7251-thompson-rd-wp_idm73000004-30421874-lst"
+    },
+    {
+      "mls": "1052400",
+      "address": "10-5450 Tomswood Road",
+      "area": "Port Alberni",
+      "price": 679000,
+      "status": "For sale",
+      "category": "Homes",
+      "beds": 3,
+      "baths": 2,
+      "sqft": 1500,
+      "photos": [
+        "https://photos.prod.cirrussystem.net/2167/b3e3f43e3d4b330d3d6cb52d7a8afa17/4109717551.jpeg?d=l"
+      ],
+      "listingAgent": "Alease Arcus",
+      "listingUrl": "https://www.remax.ca/bc/port-alberni-real-estate/10-5450-tomswood-rd-wp_idm73000004-30418406-lst"
+    },
+    {
+      "mls": "1052361",
+      "address": "5536 Falls Street",
+      "area": "Port Alberni",
+      "price": 579900,
+      "status": "For sale",
+      "category": "Homes",
+      "beds": 4,
+      "baths": 3,
+      "sqft": 1920,
+      "photos": [
+        "https://photos.prod.cirrussystem.net/2167/ef51c1efbe2e4c3d74d8a0144f334095/902902938.jpeg?d=l"
+      ],
+      "listingAgent": "Sonja Sutton",
+      "listingUrl": "https://www.remax.ca/bc/port-alberni-real-estate/5536-falls-st-wp_idm73000004-30416196-lst"
+    },
+    {
+      "mls": "1052568",
+      "address": "3142 Sweet Place",
+      "area": "Port Alberni",
+      "price": 885000,
+      "status": "For sale",
+      "category": "Homes",
+      "beds": 3,
+      "baths": 2,
+      "sqft": 1755,
+      "photos": [
+        "https://photos.prod.cirrussystem.net/2167/8d22ec2825b34a06b244a0d7980887c5/162783256.jpeg?d=l"
+      ],
+      "listingAgent": "Olivier Naud",
+      "listingUrl": "https://www.remax.ca/bc/port-alberni-real-estate/3142-sweet-pl-wp_idm73000004-30416028-lst"
+    },
+    {
+      "mls": "1052534",
+      "address": "5847 River Road",
+      "area": "Port Alberni",
+      "price": 649000,
+      "status": "For sale",
+      "category": "Homes",
+      "beds": 3,
+      "baths": 2,
+      "sqft": 1652,
+      "photos": [
+        "https://photos.prod.cirrussystem.net/2167/7d6c42bd7e1082f5205a05a7f8851de8/2130019611.jpeg?d=l"
+      ],
+      "listingAgent": "Alixe Diewold",
+      "listingUrl": "https://www.remax.ca/bc/port-alberni-real-estate/5847-river-rd-wp_idm73000004-30414119-lst"
+    },
+    {
+      "mls": "1052291",
+      "address": "4891 David Street",
+      "area": "Port Alberni",
+      "price": 499000,
+      "status": "For sale",
+      "category": "Homes",
+      "beds": 3,
+      "baths": 1,
+      "sqft": 1298,
+      "photos": [
+        "https://photos.prod.cirrussystem.net/2167/4d2a0b16732ce6962ba0ac6b0a6b200b/2923589687.jpeg?d=l"
+      ],
+      "listingAgent": "Dave Ralla",
+      "listingUrl": "https://www.remax.ca/bc/port-alberni-real-estate/4891-david-st-wp_idm73000004-30405521-lst"
+    },
+    {
+      "mls": "1052258",
+      "address": "3968 Glenside Road",
+      "area": "Port Alberni",
+      "price": 464900,
+      "status": "For sale",
+      "category": "Homes",
+      "beds": 2,
+      "baths": 1,
+      "sqft": 957,
+      "photos": [
+        "https://photos.prod.cirrussystem.net/2167/073b55cf89eac4f220365b788e233624/1947719911.jpeg?d=l"
+      ],
+      "listingAgent": "Dave Ralla",
+      "listingUrl": "https://www.remax.ca/bc/port-alberni-real-estate/3968-glenside-rd-wp_idm73000004-30400481-lst"
+    },
+    {
+      "mls": "1052330",
+      "address": "4878 Josephine Street",
+      "area": "Port Alberni",
+      "price": 512000,
+      "status": "For sale",
+      "category": "Homes",
+      "beds": 3,
+      "baths": 1,
+      "sqft": 1260,
+      "photos": [
+        "https://photos.prod.cirrussystem.net/2167/4462f60bf09deeea6f2069837e3f37af/2575949783.jpeg?d=l"
+      ],
+      "listingAgent": "Denaye Melenius",
+      "listingUrl": "https://www.remax.ca/bc/port-alberni-real-estate/4878-josephine-st-wp_idm73000004-30402648-lst"
+    },
+    {
+      "mls": "1051998",
+      "address": "304-5170 Angus Street",
+      "area": "Port Alberni",
+      "price": 259000,
+      "status": "For sale",
+      "category": "Homes",
+      "beds": 1,
+      "baths": 1,
+      "sqft": 726,
+      "photos": [
+        "https://photos.prod.cirrussystem.net/2167/9736b1cf610d0e5f8a2e9cf13fd15963/2300721900.jpeg?d=l"
+      ],
+      "listingAgent": "John Stilinovic",
+      "listingUrl": "https://www.remax.ca/bc/port-alberni-real-estate/304-5170-angus-st-wp_idm73000004-30392279-lst"
+    },
+    {
+      "mls": "1051939",
+      "address": "2-3258 Alberni Highway",
+      "area": "Port Alberni",
+      "price": 167500,
+      "status": "For sale",
+      "category": "Homes",
+      "beds": 2,
+      "baths": 1,
+      "sqft": 727,
+      "photos": [
+        "https://photos.prod.cirrussystem.net/2167/3c2cbce6aa6129145b2d10e333349004/1151113483.jpeg?d=l"
+      ],
+      "listingAgent": "Kelly Malone",
+      "listingUrl": "https://www.remax.ca/bc/port-alberni-real-estate/2-3258-alberni-hwy-wp_idm73000004-30389029-lst"
+    },
+    {
+      "mls": "1051878",
+      "address": "2804 16th Avenue",
+      "area": "Port Alberni",
+      "price": 579000,
+      "status": "For sale",
+      "category": "Homes",
+      "beds": 5,
+      "baths": 2,
+      "sqft": 2398,
+      "photos": [
+        "https://photos.prod.cirrussystem.net/2167/4c1657a228b94c3401db0803c1d89c68/1245436302.jpeg?d=l"
+      ],
+      "listingAgent": "Dave Ralla",
+      "listingUrl": "https://www.remax.ca/bc/port-alberni-real-estate/2804-16th-ave-wp_idm73000004-30384551-lst"
+    }
+  ]
 }

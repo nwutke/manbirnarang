@@ -20,6 +20,12 @@ Each commit to `main` triggers a Vercel deploy. Before building, `scripts/check-
    `Brokerage listings: +2 new, 1 price change, -1 sold (2026-10-29)`
 8. Update `"updated"` to today's date (YYYY-MM-DD) whenever you commit.
 
+## Coverage
+
+Include **every** active for-sale listing where RE/MAX Mid-Island Realty (including the Ucluelet office) is the listing brokerage: about 240 homes across Port Alberni, Sproat Lake, Beaver Creek, Cherry Creek, Ucluelet, Tofino and Bamfield. Leave out rentals. Include all photos and the full description when available. The site's listing pages show a gallery, so a single photo makes a thin page.
+
+On the Properties page, Manbir's own listings always show first, followed by these brokerage listings in the order they appear in the file. Put the newest listings first.
+
 ## File format
 
 ```json
@@ -44,7 +50,8 @@ Each commit to `main` triggers a Vercel deploy. Before building, `scripts/check-
       "features": ["Heat pump", "Fenced yard"],
       "photos": ["https://.../1053099-1.jpg", "https://.../1053099-2.jpg"],
       "listingAgent": "Kelly Malone",
-      "listingUrl": "https://midislandrealty.com/..."
+      "listingUrl": "https://www.remax.ca/bc/port-alberni-real-estate/5453-woodland-cres-w-wp_idm73000004-30446369-lst",
+      "listedOn": "2026-10-27"
     }
   ]
 }
@@ -65,4 +72,5 @@ Each commit to `main` triggers a Vercel deploy. Before building, `scripts/check-
 | `features` | no | List of short text items. |
 | `photos` | yes | 1 to 80 `https://` image URLs. The first one is the cover photo. |
 | `listingAgent` | yes | The listing agent's name. Shown as "Listed by …" on the site. |
-| `listingUrl` | no | Link to the listing on the brokerage site. |
+| `listingUrl` | **yes** | The listing's page on **remax.ca**. The "Contact agent" button opens this link. |
+| `listedOn` | no | Date the listing went on the market (YYYY-MM-DD). Powers the "New (last 10 days)" filter. |

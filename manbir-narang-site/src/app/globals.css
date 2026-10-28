@@ -362,3 +362,48 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 @media(max-width:900px){.bkbtns{min-width:0;width:100%;flex-direction:row}}
 .lhcourtesy{margin:10px 0 0;color:var(--gl);font-size:14px;letter-spacing:.02em}
 .whob{font:400 14px var(--f-han),sans-serif;color:#6175AE}
+
+/* Contact agent button on brokerage cards */
+.lc .lcagent{position:relative;z-index:2;display:block;text-align:center;margin:18px 0 0}
+
+/* ---------- Properties search (Clark-style) ---------- */
+.psw{display:grid!important;grid-template-columns:280px minmax(0,1fr);gap:48px;align-items:start;text-align:left!important;max-width:1360px}
+.psopen{display:none}
+.pside{position:sticky;top:100px;background:#fff;border:1px solid rgba(201,164,92,.45);padding:28px 24px;box-shadow:0 14px 40px rgba(5,40,138,.06)}
+.pside h2{font-size:30px;margin:0 0 18px;color:#0B2E8C}
+.psf{display:block;border:0;padding:0;margin:0 0 20px;min-width:0}
+.psf>span,.psf legend{display:block;font:500 11px var(--f-cin),serif;letter-spacing:.18em;text-transform:uppercase;color:#8A6420;margin-bottom:8px;padding:0}
+.psf select{width:100%;appearance:none;-webkit-appearance:none;border:1px solid #D9DEEB;border-radius:4px;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%238A6420' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 12px center;padding:10px 32px 10px 12px;font:400 15px var(--f-han),sans-serif;color:var(--ink);cursor:pointer}
+.psf select:focus{outline:2px solid var(--gold);outline-offset:1px}
+.ps2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pscheck{display:flex;align-items:center;gap:10px;padding:5px 0;color:var(--ink);font-size:15px;cursor:pointer}
+.pscheck input{width:17px;height:17px;accent-color:#0D33A3;cursor:pointer}
+.pscheck em{margin-left:auto;font-style:normal;color:#8394C7;font-size:13px}
+.psnew{margin:0 0 20px}
+.psreset{width:100%;background:none;border:1px solid #C9A45C;color:#6B4E16;padding:11px;font:500 11px var(--f-cin),serif;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:background .3s,color .3s}
+.psreset:hover:not(:disabled){background:var(--navy);color:var(--gl);border-color:var(--navy)}
+.psreset:disabled{opacity:.4;cursor:default}
+.phead{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid rgba(201,164,92,.45)}
+.phead h2{font-size:40px;margin:0;color:#0B2E8C}
+.phead span{color:#6175AE;font-size:15px}
+.pgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:56px 28px}
+.pnone{text-align:center;padding:64px 0;color:#485B97}
+.pnav{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:64px}
+.pnav button,.pnav span{min-width:44px;height:44px;padding:0 12px;border:1px solid #D9DEEB;background:#fff;color:var(--ink);font:500 15px var(--f-han),sans-serif;border-radius:4px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+.pnav span{border:0;background:none;cursor:default}
+.pnav button.on{background:var(--navy);color:var(--gl);border-color:var(--navy)}
+.pnav button:hover:not(:disabled):not(.on){border-color:var(--gold)}
+.pnav button:disabled{opacity:.35;cursor:default}
+.pfine{margin:40px 0 0;font-size:13px;color:#8394C7;text-align:center}
+@media(min-width:1400px){.pgrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:960px){
+  .psw{grid-template-columns:1fr;gap:24px}
+  .psopen{display:block;width:100%;background:var(--navy);color:var(--gl);border:0;padding:15px;font:500 12px var(--f-cin),serif;letter-spacing:.2em;text-transform:uppercase;cursor:pointer}
+  .pside{display:none;position:static}
+  .pside.open{display:block}
+}
+@media(max-width:700px){
+  .psw{padding:0 16px!important}
+  .pgrid{grid-template-columns:1fr;gap:48px}
+  .phead h2{font-size:30px}
+}

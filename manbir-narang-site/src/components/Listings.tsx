@@ -21,7 +21,7 @@ function Icon({ d, fill }: { d: React.ReactNode; fill?: boolean }) {
   );
 }
 
-function Card({ l }: { l: Listing }) {
+export function Card({ l }: { l: Listing }) {
   const sold = l.status === "Sold";
   const cover = l.photos[0];
   const bg = cover ? { background: `url("${cover}") 50% 50%/cover no-repeat` } : undefined;
@@ -53,6 +53,9 @@ function Card({ l }: { l: Listing }) {
         {l.listedBy ? <div className="who whob">Listed by {l.listedBy}</div> : <div className="who"><i className="av" />Manbir Narang</div>}
         <ShareButton path={`/${l.slug}`} title={l.title} text={`${l.title}, ${money(l.price)}. ${l.location}`} />
       </div>
+      {l.sourceUrl ? (
+        <a className="btn o lcagent" href={l.sourceUrl} target="_blank" rel="noopener noreferrer">Contact agent ↗</a>
+      ) : null}
     </article>
   );
 }
