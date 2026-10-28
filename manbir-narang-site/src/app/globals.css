@@ -1,4 +1,4 @@
-:root{--f-cin:"Cinzel";--f-cor:"Cormorant Garamond";--f-han:"Hanken Grotesk"}
+:root{--f-cin:var(--font-cinzel);--f-cor:var(--font-cormorant);--f-han:var(--font-hanken)}
 
 :root{--navy:#05288A;--royal:#0E38BC;--burg:#072DA2;--gold:#C9A45C;--gl:#EBD38F;--ivory:#F5F6FA;--ink:#0A2272}
 *{box-sizing:border-box}html{scroll-behavior:auto}body{margin:0;background:var(--navy);color:var(--ink);font:300 16px/1.75 var(--f-han),system-ui,sans-serif}

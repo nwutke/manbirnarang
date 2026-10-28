@@ -1,15 +1,35 @@
 import type { Metadata, Viewport } from "next";
-import "@fontsource/cinzel/400.css";
-import "@fontsource/cinzel/500.css";
-import "@fontsource/cormorant-garamond/400.css";
-import "@fontsource/cormorant-garamond/500.css";
-import "@fontsource/cormorant-garamond/600.css";
-import "@fontsource/cormorant-garamond/500-italic.css";
-import "@fontsource/hanken-grotesk/300.css";
-import "@fontsource/hanken-grotesk/400.css";
-import "@fontsource/hanken-grotesk/500.css";
-import "@fontsource/hanken-grotesk/600.css";
+import localFont from "next/font/local";
 import "./globals.css";
+
+const cinzel = localFont({
+  src: [
+    { path: "../fonts/cinzel-latin-400-normal.woff2", weight: "400", style: "normal" },
+    { path: "../fonts/cinzel-latin-500-normal.woff2", weight: "500", style: "normal" },
+  ],
+  variable: "--font-cinzel",
+  display: "block",
+});
+const cormorant = localFont({
+  src: [
+    { path: "../fonts/cormorant-garamond-latin-400-normal.woff2", weight: "400", style: "normal" },
+    { path: "../fonts/cormorant-garamond-latin-500-normal.woff2", weight: "500", style: "normal" },
+    { path: "../fonts/cormorant-garamond-latin-600-normal.woff2", weight: "600", style: "normal" },
+    { path: "../fonts/cormorant-garamond-latin-500-italic.woff2", weight: "500", style: "italic" },
+  ],
+  variable: "--font-cormorant",
+  display: "block",
+});
+const hanken = localFont({
+  src: [
+    { path: "../fonts/hanken-grotesk-latin-300-normal.woff2", weight: "300", style: "normal" },
+    { path: "../fonts/hanken-grotesk-latin-400-normal.woff2", weight: "400", style: "normal" },
+    { path: "../fonts/hanken-grotesk-latin-500-normal.woff2", weight: "500", style: "normal" },
+    { path: "../fonts/hanken-grotesk-latin-600-normal.woff2", weight: "600", style: "normal" },
+  ],
+  variable: "--font-hanken",
+  display: "block",
+});
 
 const site = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
@@ -30,7 +50,7 @@ export const viewport: Viewport = { themeColor: "#05288A" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${cinzel.variable} ${cormorant.variable} ${hanken.variable}`}>
       <body>{children}</body>
     </html>
   );
