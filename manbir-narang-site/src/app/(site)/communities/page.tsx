@@ -14,7 +14,7 @@ export default function Communities() {
       <section className="iv">
         <div className="w">
           {HOODS.map((h, i) => (
-            <div className={"row" + (i % 2 ? " rv" : "")} key={h.name}>
+            <div className={"row" + (i % 2 ? " flip" : "")} key={h.name}>
               <div className="fr"><div className={"im " + h.cls} /></div>
               <div>
                 <h2>{h.name}</h2>
