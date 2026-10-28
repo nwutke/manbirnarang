@@ -1,5 +1,4 @@
 import { getSupabase } from "./supabase";
-import { SEED_LISTINGS } from "./data";
 import { slugify, type Listing } from "./types";
 
 type Row = {
@@ -20,17 +19,17 @@ export function rowToListing(r: Row): Listing {
   };
 }
 
-/** Published listings from Supabase. Falls back to sample listings until the database has data. */
+/** Published listings from Supabase. Empty when Supabase is not configured, errors, or has no published rows. */
 export async function getListings(): Promise<Listing[]> {
   const sb = getSupabase();
-  if (!sb) return SEED_LISTINGS;
+  if (!sb) return [];
   const { data, error } = await sb
     .from("listings")
     .select("*")
     .eq("published", true)
     .order("sort", { ascending: true })
     .order("created_at", { ascending: false });
-  if (error || !data || data.length === 0) return SEED_LISTINGS;
+  if (error || !data || data.length === 0) return [];
   return (data as Row[]).map(rowToListing);
 }
 

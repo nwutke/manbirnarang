@@ -46,10 +46,14 @@ export default async function Home() {
       </section>
 
       <section className="iv wh">
-        <div className="w">
-          <SectionHead title="Featured listings" sub="Homes, lakefront, and acreage across the Alberni Valley." />
-        </div>
-        <Listings listings={listings} limit={6} />
+        {listings.length > 0 ? (
+          <>
+            <div className="w">
+              <SectionHead title="Featured listings" sub="Homes, lakefront, and acreage across the Alberni Valley." />
+            </div>
+            <Listings listings={listings} limit={6} />
+          </>
+        ) : null}
         <div className="c" style={{ padding: "64px 0 72px" }}>
           <Btn href="/properties" solid>View all listings</Btn>
         </div>

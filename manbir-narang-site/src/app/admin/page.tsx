@@ -159,7 +159,7 @@ export default function Admin() {
         <>
           <button className="abtn" onClick={() => setForm({ ...empty })}>+ Add listing</button>
           <div className="admlist">
-            {listings.length === 0 && <p>No listings yet. Until you add one, the public site shows sample homes.</p>}
+            {listings.length === 0 && <p>No listings yet. Your own listings stay off the public site until you add one.</p>}
             {listings.map((l) => (
               <div className="admrow" key={l.id}>
                 <div className="admthumb" style={l.photos[0] ? { backgroundImage: `url("${l.photos[0]}")` } : undefined} />

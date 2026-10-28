@@ -13,7 +13,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     changeFrequency: p === "/properties" || p === "" ? "weekly" : "monthly",
     priority: p === "" ? 1 : p === "/privacy" || p === "/terms" ? 0.2 : 0.7,
   }));
-  const listings = (await getListings()).filter((l) => !l.id.startsWith("seed-"));
+  const listings = await getListings();
   const posts = await getPosts();
   return [
     ...pages,
