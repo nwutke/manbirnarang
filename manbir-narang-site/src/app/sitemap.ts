@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getListings } from "@/lib/listings";
 import { getPosts } from "@/lib/posts";
-import { getBrokerageListings } from "@/lib/brokerage";
 import { siteUrl } from "@/lib/site";
 
 export const revalidate = 3600;
@@ -14,8 +13,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     changeFrequency: p === "/properties" || p === "" ? "weekly" : "monthly",
     priority: p === "" ? 1 : p === "/privacy" || p === "/terms" ? 0.2 : 0.7,
   }));
-  const own = await getListings();
-  const listings = [...own, ...getBrokerageListings(own)].filter((l) => !l.id.startsWith("seed-"));
+  const listings = (await getListings()).filter((l) => !l.id.startsWith("seed-"));
   const posts = await getPosts();
   return [
     ...pages,

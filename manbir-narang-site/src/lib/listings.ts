@@ -1,5 +1,4 @@
 import { getSupabase } from "./supabase";
-import { getBrokerageListings } from "./brokerage";
 import { SEED_LISTINGS } from "./data";
 import { slugify, type Listing } from "./types";
 
@@ -37,7 +36,7 @@ export async function getListings(): Promise<Listing[]> {
 
 /** One published listing by its web address, or null if there is no such listing. */
 export async function getListingBySlug(slug: string): Promise<Listing | null> {
-  const own = await getListings();
+  const all = await getListings();
   const key = slugify(decodeURIComponent(slug));
-  return own.find((l) => l.slug === key) ?? getBrokerageListings(own).find((l) => l.slug === key) ?? null;
+  return all.find((l) => l.slug === key) ?? null;
 }

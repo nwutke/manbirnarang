@@ -7,7 +7,6 @@ import ShareButton from "@/components/ShareButton";
 import { Orn } from "@/components/ui";
 import { EMAIL, OFFICE, PHONE } from "@/lib/data";
 import { getListingBySlug, getListings } from "@/lib/listings";
-import { getBrokerageListings } from "@/lib/brokerage";
 import { money, type Listing } from "@/lib/types";
 
 export const revalidate = 60;
@@ -15,7 +14,7 @@ export const dynamicParams = true;
 
 export async function generateStaticParams() {
   const listings = await getListings();
-  return [...listings, ...getBrokerageListings(listings)].map((l) => ({ slug: l.slug }));
+  return listings.map((l) => ({ slug: l.slug }));
 }
 
 type Props = { params: Promise<{ slug: string }> };

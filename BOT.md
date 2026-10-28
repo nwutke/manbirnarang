@@ -22,9 +22,11 @@ Each commit to `main` triggers a Vercel deploy. Before building, `scripts/check-
 
 ## Coverage
 
-Include **every** active for-sale listing where RE/MAX Mid-Island Realty (including the Ucluelet office) is the listing brokerage: about 240 homes across Port Alberni, Sproat Lake, Beaver Creek, Cherry Creek, Ucluelet, Tofino and Bamfield. Leave out rentals. Include all photos and the full description when available. The site's listing pages show a gallery, so a single photo makes a thin page.
+Include **every** active for-sale listing where RE/MAX Mid-Island Realty (including the Ucluelet office) is the listing brokerage: about 240 homes across Port Alberni, Sproat Lake, Beaver Creek, Cherry Creek, Ucluelet, Tofino and Bamfield. Leave out rentals.
 
-On the Properties page, Manbir's own listings always show first, followed by these brokerage listings in the order they appear in the file. Put the newest listings first.
+These listings appear as **cards only**. They do not get their own pages on manbirnarang.ca. Clicking a card, or its "Contact agent" button, opens `listingUrl` on remax.ca. So each listing only needs what the card shows: **one cover photo**, address, area, price, beds, baths, sqft, category, listing agent and the remax.ca link. Description, features, extra photos, lot size, year built and taxes are optional and not shown.
+
+On the Properties page, Manbir's own listings always show first, followed by these listings in the order they appear in the file. Put the newest listings first.
 
 ## File format
 
@@ -60,8 +62,8 @@ On the Properties page, Manbir's own listings always show first, followed by the
 | Field | Required | Notes |
 |---|---|---|
 | `mls` | yes | MLS® number as text. Must be unique. |
-| `address` | yes | Street address without city. Also becomes the web address, e.g. `manbirnarang.ca/5453-woodland-crescent`. |
-| `slug` | no | Override the web address only if two listings would clash. |
+| `address` | yes | Street address without city. |
+| `slug` | no | Only needed if two listings have the same address. |
 | `area` | yes | e.g. `Port Alberni`, `Sproat Lake`, `Beaver Creek`, `Cherry Creek`. |
 | `price` | yes | Number, no `$` or commas. |
 | `status` | no | `For sale` (default), `New listing`, `Price improved`, `Open house Sat`. |
@@ -70,7 +72,7 @@ On the Properties page, Manbir's own listings always show first, followed by the
 | `lotSize` | no | Text, e.g. `0.23 acres`. |
 | `description` | no | Plain text. Blank lines separate paragraphs. |
 | `features` | no | List of short text items. |
-| `photos` | yes | 1 to 80 `https://` image URLs. The first one is the cover photo. |
+| `photos` | yes | At least one `https://` image URL. Only the first (the cover photo) is shown. |
 | `listingAgent` | yes | The listing agent's name. Shown as "Listed by …" on the site. |
-| `listingUrl` | **yes** | The listing's page on **remax.ca**. The "Contact agent" button opens this link. |
+| `listingUrl` | **yes** | The listing's page on **remax.ca**. The card and its "Contact agent" button open this link. |
 | `listedOn` | no | Date the listing went on the market (YYYY-MM-DD). Powers the "New (last 10 days)" filter. |

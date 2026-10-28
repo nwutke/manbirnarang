@@ -27,7 +27,11 @@ export function Card({ l }: { l: Listing }) {
   const bg = cover ? { background: `url("${cover}") 50% 50%/cover no-repeat` } : undefined;
   return (
     <article className="lc lcl">
-      <Link href={`/${l.slug}`} className="lcover" aria-label={`${l.title}, ${money(l.price)}`} />
+      {l.sourceUrl ? (
+        <a href={l.sourceUrl} target="_blank" rel="noopener noreferrer" className="lcover" aria-label={`${l.title}, ${money(l.price)}, on RE/MAX (opens in a new tab)`} />
+      ) : (
+        <Link href={`/${l.slug}`} className="lcover" aria-label={`${l.title}, ${money(l.price)}`} />
+      )}
       <div className="ph2 f1" style={bg}>
         <div className="bd">
           {l.featured ? <span className="pill">Featured</span> : <span />}
@@ -38,12 +42,12 @@ export function Card({ l }: { l: Listing }) {
         </div>
         <div className="pl">
           <span><Icon d={I.pin} fill />{l.location}</span>
-          <span><Icon d={I.cam} fill />{l.photoCount ?? l.photos.length}</span>
+          {l.sourceUrl ? null : <span><Icon d={I.cam} fill />{l.photoCount ?? l.photos.length}</span>}
         </div>
       </div>
       <h3 className="lt">{l.title}</h3>
       <div className="lpr">{money(l.price)}</div>
-      <p className="ld">{l.description}</p>
+      {l.description ? <p className="ld">{l.description}</p> : null}
       <div className="lspec">
         {l.beds > 0 ? <span><Icon d={I.bed} />{l.beds}</span> : null}
         {l.baths > 0 ? <span><Icon d={I.bath} />{l.baths}</span> : null}
@@ -51,7 +55,7 @@ export function Card({ l }: { l: Listing }) {
       </div>
       <div className="lag">
         {l.listedBy ? <div className="who whob">Listed by {l.listedBy}</div> : <div className="who"><i className="av" />Manbir Narang</div>}
-        <ShareButton path={`/${l.slug}`} title={l.title} text={`${l.title}, ${money(l.price)}. ${l.location}`} />
+        <ShareButton path={l.sourceUrl ?? `/${l.slug}`} title={l.title} text={`${l.title}, ${money(l.price)}. ${l.location}`} />
       </div>
       {l.sourceUrl ? (
         <a className="btn o lcagent" href={l.sourceUrl} target="_blank" rel="noopener noreferrer">Contact agent ↗</a>
