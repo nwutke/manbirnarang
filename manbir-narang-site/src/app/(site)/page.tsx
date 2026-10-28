@@ -56,7 +56,7 @@ export default async function Home() {
           <div className="hoods3">
             {HOODS.map((h) => (
               <Link href="/communities" className={"hd " + h.cls} key={h.name}>
-                <span>{h.name}<small>{h.count}</small></span>
+                <span>{h.name}</span>
               </Link>
             ))}
           </div>
