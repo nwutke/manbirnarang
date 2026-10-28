@@ -11,6 +11,7 @@ const NAV = [
   ["/buy", "Buy"],
   ["/sell", "Sell"],
   ["/communities", "Communities"],
+  ["/blog", "Blog"],
   ["/about", "About"],
   ["/contact", "Contact"],
 ] as const;
@@ -34,7 +35,7 @@ export default function Nav() {
         </Link>
         <div className={"links" + (open ? " open" : "")}>
           {NAV.map(([href, label]) => (
-            <Link key={href} href={href} className={path === href ? "on" : undefined}>
+            <Link key={href} href={href} className={path === href || (href !== "/" && path.startsWith(href + "/")) ? "on" : undefined}>
               {label}
             </Link>
           ))}

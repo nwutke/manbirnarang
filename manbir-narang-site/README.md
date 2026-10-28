@@ -70,3 +70,10 @@ npm run dev                  # http://localhost:3000
 - The site works without Supabase connected (it shows the sample listings and the forms say they are not connected), so you can preview it first.
 - Only the public anon key is used in the browser. Security comes from the database rules in `supabase/schema.sql`: visitors can read published listings and send enquiries, and only your signed-in admin can change anything.
 - Not built yet: a page for each individual listing, and a live MLS feed. Both can be added later.
+
+## Writing blog articles
+
+1. One-time setup: in Supabase open **SQL Editor > New query**, paste everything from `supabase/blog.sql`, and click **Run**. This creates the blog table and adds four starter articles.
+2. Go to `/admin`, open the **Blog** tab, and click **+ New article**.
+3. Formatting: leave a blank line between paragraphs, start a line with `## ` for a heading, start lines with `- ` for bullet points, and put `**two stars**` around words for bold.
+4. Untick **Published** to save a draft. Articles appear at `yourdomain.com/blog/web-address`, on the Blog page, and the newest four on the home page.

@@ -6,12 +6,15 @@ import Calculator from "@/components/Calculator";
 import EnquiryForm from "@/components/EnquiryForm";
 import { Btn, SectionHead, Testimonials } from "@/components/ui";
 import { getListings } from "@/lib/listings";
-import { EMAIL, HOODS, OFFICE, PHONE, POSTS, STATS5, TESTIMONIALS } from "@/lib/data";
+import { EMAIL, HOODS, OFFICE, PHONE, STATS5, TESTIMONIALS } from "@/lib/data";
+import PostCard from "@/components/PostCard";
+import { getPosts } from "@/lib/posts";
 
 export const revalidate = 60;
 
 export default async function Home() {
   const listings = await getListings();
+  const posts = (await getPosts()).slice(0, 4);
   return (
     <>
       <Hero />
@@ -114,16 +117,9 @@ export default async function Home() {
         <div className="w">
           <SectionHead title="Real estate blog" sub="Local advice for buyers and sellers in the Alberni Valley." />
           <div className="g4">
-            {POSTS.map((p) => (
-              <div className="bl" key={p.title}>
-                <div className="fr"><div className={"im " + p.cls} /></div>
-                <div className="dt">{p.date}</div>
-                <h3>{p.title}</h3>
-                <p>{p.text}</p>
-                <a>Read more</a>
-              </div>
-            ))}
+            {posts.map((p) => <PostCard p={p} key={p.id} />)}
           </div>
+          <div className="c" style={{ marginTop: 48 }}><Btn href="/blog">View all articles</Btn></div>
         </div>
       </section>
 

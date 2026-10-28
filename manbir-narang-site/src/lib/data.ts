@@ -32,12 +32,6 @@ export const TESTIMONIALS = [
   { q: "Clear, calm, and always available. I would recommend Manbir to anyone buying or selling.", who: "Client name", where: "Happy client · Cherry Creek" },
 ];
 
-export const POSTS = [
-  { cls: "pf4", date: "OCTOBER 2026", title: "Sproat Lake or Alberni Inlet: which waterfront suits you?", text: "A look at lifestyle, access, and what each shoreline offers." },
-  { cls: "pf3", date: "OCTOBER 2026", title: "What to know before buying acreage in the valley", text: "Wells, septic, access, and other points worth checking early." },
-  { cls: "pf6", date: "SEPTEMBER 2026", title: "How to price your Port Alberni home to sell", text: "Why the right price at launch matters most." },
-  { cls: "pf7", date: "SEPTEMBER 2026", title: "Preparing your home for a winter sale", text: "Simple steps that help a home show well in any season." },
-];
 
 export const STATS5: [string, string][] = [["$400M+", "In homes sold"], ["350+", "Families served"], ["12", "Years of experience"], ["5.0", "Client rating"], ["98%", "Of list price achieved"]];
 export const STATS4: [string, string][] = STATS5.slice(0, 4);

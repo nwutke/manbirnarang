@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { getSupabase } from "@/lib/supabase";
+import BlogAdmin from "./BlogAdmin";
 import { rowToListing } from "@/lib/listings";
 import { CATEGORIES, STATUSES, money, slugify, type Listing } from "@/lib/types";
 
@@ -18,7 +19,8 @@ export default function Admin() {
   const sb = getSupabase();
   const [ready, setReady] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
-  const [tab, setTab] = useState<"listings" | "inquiries">("listings");
+  const [tab, setTab] = useState<"listings" | "blog" | "inquiries">("listings");
+  const [postCount, setPostCount] = useState<number | null>(null);
   const [listings, setListings] = useState<Listing[]>([]);
   const [inquiries, setInquiries] = useState<Inquiry[]>([]);
   const [form, setForm] = useState<Form | null>(null);
@@ -104,7 +106,7 @@ export default function Admin() {
       taxes: Number(form.taxes.replace(/[^0-9.]/g, "")) || null,
       features: form.features.split("\n").map((x) => x.trim()).filter(Boolean),
     };
-    const RESERVED = ["properties", "buy", "sell", "communities", "about", "contact", "privacy", "terms", "admin"];
+    const RESERVED = ["properties", "buy", "sell", "communities", "blog", "about", "contact", "privacy", "terms", "admin"];
     if (RESERVED.includes(row.slug)) {
       setBusy(false); setMsg(`Could not save: "${row.slug}" is already a page on the site. Choose a different web address.`); return;
     }
@@ -148,9 +150,10 @@ export default function Admin() {
       </div>
       <div className="admtabs">
         <button className={tab === "listings" ? "on" : ""} onClick={() => setTab("listings")}>Listings ({listings.length})</button>
+        <button className={tab === "blog" ? "on" : ""} onClick={() => setTab("blog")}>Blog{postCount === null ? "" : ` (${postCount})`}</button>
         <button className={tab === "inquiries" ? "on" : ""} onClick={() => setTab("inquiries")}>Enquiries ({inquiries.length})</button>
       </div>
-      {msg ? <p className={msg.startsWith("Saved") ? "aok" : "aerr"}>{msg}</p> : null}
+      {msg && tab !== "blog" ? <p className={msg.startsWith("Saved") ? "aok" : "aerr"}>{msg}</p> : null}
 
       {tab === "listings" && !form && (
         <>
@@ -222,6 +225,8 @@ export default function Admin() {
           </div>
         </form>
       )}
+
+      {tab === "blog" && <BlogAdmin sb={sb} onCount={setPostCount} />}
 
       {tab === "inquiries" && (
         <div className="admlist">
