@@ -38,7 +38,7 @@ export default function Footer() {
       </div>
       <div className="w legal">
         <span>© {new Date().getFullYear()} Manbir Narang · RE/MAX Mid-Island Realty</span>
-        <span>Privacy policy &nbsp;·&nbsp; Terms of use</span>
+        <span><Link href="/privacy">Privacy Policy</Link> &nbsp;·&nbsp; <Link href="/terms">Terms of Use</Link></span>
       </div>
     </footer>
   );

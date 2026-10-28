@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { getSupabase } from "@/lib/supabase";
 
@@ -65,6 +66,7 @@ export default function EnquiryForm({ kind, button, listing }: { kind: Kind; but
       <button className="btn" type="submit" disabled={state === "sending"}>
         {state === "sending" ? "Sending…" : button}
       </button>
+      <p className="fpriv">By sending this form, you agree to be contacted about your enquiry. See the <Link href="/privacy">Privacy Policy</Link>.</p>
       {state === "error" ? <p className="ferr">Something went wrong sending that. Please try again, or call me directly.</p> : null}
       {state === "offline" ? <p className="ferr">The form is not connected to the database yet. Add your Supabase keys to turn it on.</p> : null}
     </form>

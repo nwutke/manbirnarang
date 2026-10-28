@@ -104,6 +104,10 @@ export default function Admin() {
       taxes: Number(form.taxes.replace(/[^0-9.]/g, "")) || null,
       features: form.features.split("\n").map((x) => x.trim()).filter(Boolean),
     };
+    const RESERVED = ["properties", "buy", "sell", "communities", "about", "contact", "privacy", "terms", "admin"];
+    if (RESERVED.includes(row.slug)) {
+      setBusy(false); setMsg(`Could not save: "${row.slug}" is already a page on the site. Choose a different web address.`); return;
+    }
     if (listings.some((l) => l.slug === row.slug && l.id !== form.id)) {
       setBusy(false); setMsg(`Could not save: another listing already uses the web address "${row.slug}".`); return;
     }
