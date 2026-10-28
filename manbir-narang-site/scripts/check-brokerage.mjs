@@ -1,12 +1,12 @@
 // Checks content/brokerage-listings.json before every build.
 // If anything is wrong the build stops, and Vercel keeps the last working version of the site live.
+// The file is refreshed from a machine that can open midislandrealty.com. This environment cannot:
+// Cloudflare blocks it. Fields the source page does not show are left out, not invented.
 import { readFileSync } from "node:fs";
 
 const FILE = new URL("../content/brokerage-listings.json", import.meta.url);
 const CATEGORIES = ["Homes", "Lakefront", "Waterfront", "Acreage", "Estates", "Condos", "Commercial"];
-const RESERVED = ["properties", "buy", "sell", "communities", "blog", "about", "contact", "privacy", "terms", "admin"];
-const slugify = (s) => s.toLowerCase().normalize("NFKD").replace(/[̀-ͯ]/g, "").replace(/&/g, " and ").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
-const isUrl = (u) => typeof u === "string" && /^https:\/\/[^\s"']+$/.test(u);
+const isUrl = (u) => typeof u === "string" && /^https:\/\/\S+$/.test(u);
 const num = (v) => typeof v === "number" && Number.isFinite(v) && v >= 0;
 
 let data;
@@ -14,35 +14,84 @@ try { data = JSON.parse(readFileSync(FILE, "utf8")); }
 catch (e) { console.error("brokerage-listings.json is not valid JSON:", e.message); process.exit(1); }
 
 const errors = [];
-if (typeof data.enabled !== "boolean") errors.push(`"enabled" must be true or false`);
-if (!Array.isArray(data.listings)) errors.push(`"listings" must be a list`);
-const seenMls = new Set(), seenSlug = new Set();
-(data.listings || []).forEach((l, i) => {
+let enabled = true;
+let listings;
+if (Array.isArray(data)) {
+  listings = data;
+} else if (data && typeof data === "object") {
+  if (typeof data.enabled !== "boolean") errors.push(`"enabled" must be true or false`);
+  else enabled = data.enabled;
+  if (data.updated !== undefined && !/^\d{4}-\d{2}-\d{2}$/.test(data.updated)) errors.push(`"updated" must be a date like 2026-10-28`);
+  if (!Array.isArray(data.listings)) errors.push(`"listings" must be a list`);
+  listings = data.listings;
+} else {
+  console.error(`\nbrokerage-listings.json has 1 problem(s):\n - the file must be a list of listings, or an object with "enabled" and "listings"\n`);
+  process.exit(1);
+}
+
+const seenMls = new Set();
+const seenUrl = new Set();
+const hosts = new Set();
+(listings || []).forEach((l, i) => {
   const at = `listings[${i}]${l && l.address ? ` (${l.address})` : ""}`;
-  if (!l || typeof l !== "object") return errors.push(`${at}: must be an object`);
-  if (typeof l.mls !== "string" || !/^[A-Za-z0-9-]+$/.test(l.mls)) errors.push(`${at}: "mls" must be the MLS number as text`);
-  else if (seenMls.has(l.mls)) errors.push(`${at}: MLS ${l.mls} appears twice`); else seenMls.add(l.mls);
-  if (typeof l.address !== "string" || !l.address.trim()) errors.push(`${at}: "address" is required`);
-  const slug = slugify(l.slug || l.address || "");
-  if (!slug) errors.push(`${at}: could not make a web address`);
-  else if (RESERVED.includes(slug)) errors.push(`${at}: web address "${slug}" is reserved`);
-  else if (seenSlug.has(slug)) errors.push(`${at}: web address "${slug}" is used twice`); else seenSlug.add(slug);
-  if (typeof l.area !== "string" || !l.area.trim()) errors.push(`${at}: "area" is required`);
-  if (!num(l.price) || l.price === 0) errors.push(`${at}: "price" must be a number greater than 0`);
-  if (l.category !== undefined && !CATEGORIES.includes(l.category)) errors.push(`${at}: "category" must be one of ${CATEGORIES.join(", ")}`);
-  for (const k of ["beds", "baths", "sqft", "taxes", "yearBuilt"]) if (l[k] !== undefined && l[k] !== null && !num(l[k])) errors.push(`${at}: "${k}" must be a number`);
-  if (typeof l.listingAgent !== "string" || !l.listingAgent.trim()) errors.push(`${at}: "listingAgent" is required`);
-  if (!Array.isArray(l.photos) || l.photos.length === 0) errors.push(`${at}: "photos" needs at least one photo URL`);
-  else if (l.photos.length > 80) errors.push(`${at}: too many photos (max 80)`);
-  else l.photos.forEach((u, j) => { if (!isUrl(u)) errors.push(`${at}: photos[${j}] must be an https:// URL`); });
-  if (l.features !== undefined && !(Array.isArray(l.features) && l.features.every((f) => typeof f === "string"))) errors.push(`${at}: "features" must be a list of text`);
-  if (!isUrl(l.listingUrl)) errors.push(`${at}: "listingUrl" (the RE/MAX listing page, used by "Contact agent") must be an https:// URL`);
-  if (l.listedOn !== undefined && l.listedOn !== null && !/^\d{4}-\d{2}-\d{2}$/.test(l.listedOn)) errors.push(`${at}: "listedOn" must be a date like 2026-10-28`);
-  if (l.description !== undefined && typeof l.description !== "string") errors.push(`${at}: "description" must be text`);
+  if (!l || typeof l !== "object" || Array.isArray(l)) return errors.push(`${at}: must be an object`);
+
+  const listingUrl = l.listingUrl || l.url;
+  if (!isUrl(listingUrl)) errors.push(`${at}: "listingUrl" must be the listing's own https:// page on midislandrealty.com`);
+  else if (seenUrl.has(listingUrl)) errors.push(`${at}: listing URL appears twice`);
+  else seenUrl.add(listingUrl);
+
+  const mls = l.mlsNumber || l.mls;
+  if (mls != null && mls !== "") {
+    if (typeof mls !== "string" || !/^[A-Za-z0-9-]+$/.test(mls)) errors.push(`${at}: "mlsNumber" must be the MLS number as text`);
+    else if (seenMls.has(mls)) errors.push(`${at}: MLS ${mls} appears twice`);
+    else seenMls.add(mls);
+  }
+  if (l.priceText != null && (typeof l.priceText !== "string" || !l.priceText.trim())) errors.push(`${at}: "priceText" must be text`);
+  if (l.propertyType != null && (typeof l.propertyType !== "string" || !l.propertyType.trim())) errors.push(`${at}: "propertyType" must be text`);
+
+  if (l.address != null && (typeof l.address !== "string" || !l.address.trim())) errors.push(`${at}: "address" must be text`);
+  for (const key of ["city", "area"]) {
+    if (l[key] != null && (typeof l[key] !== "string" || !l[key].trim())) errors.push(`${at}: "${key}" must be text`);
+  }
+  if (l.price != null && l.price !== "") {
+    if (typeof l.price === "number") {
+      if (!(num(l.price) && l.price > 0)) errors.push(`${at}: "price" must be a number greater than 0`);
+    } else if (typeof l.price !== "string" || !l.price.trim()) errors.push(`${at}: "price" must be a number or the price text from the source page`);
+  }
+  if (l.category != null && l.category !== "" && !CATEGORIES.includes(l.category)) errors.push(`${at}: "category" must be one of ${CATEGORIES.join(", ")}`);
+  if (l.status != null && typeof l.status !== "string") errors.push(`${at}: "status" must be text`);
+  for (const k of ["beds", "baths", "sqft", "taxes", "yearBuilt"]) {
+    if (l[k] == null || l[k] === "") continue;
+    if (typeof l[k] === "number" && !num(l[k])) errors.push(`${at}: "${k}" must be a number`);
+    else if (typeof l[k] !== "number" && typeof l[k] !== "string") errors.push(`${at}: "${k}" must be a number`);
+  }
+  if (l.listingAgent != null && (typeof l.listingAgent !== "string" || !l.listingAgent.trim())) errors.push(`${at}: "listingAgent" must be text`);
+
+  const photoValues = [];
+  if (typeof l.photo === "string" && l.photo.trim()) photoValues.push(l.photo);
+  else if (l.photo != null && l.photo !== "") errors.push(`${at}: "photo" must be an https:// URL`);
+  if (typeof l.photoUrl === "string" && l.photoUrl.trim()) photoValues.push(l.photoUrl);
+  else if (l.photoUrl != null && l.photoUrl !== "") errors.push(`${at}: "photoUrl" must be an https:// URL`);
+  if (l.photos != null) {
+    if (!Array.isArray(l.photos)) errors.push(`${at}: "photos" must be a list of https:// URLs`);
+    else l.photos.forEach((u, j) => {
+      if (!isUrl(u)) errors.push(`${at}: photos[${j}] must be an https:// URL`);
+      else photoValues.push(u);
+    });
+    if (l.photos.length > 80) errors.push(`${at}: too many photos (max 80)`);
+  }
+  photoValues.forEach((u) => { if (isUrl(u)) hosts.add(new URL(u).hostname); });
+
+  if (l.features != null && !(Array.isArray(l.features) && l.features.every((f) => typeof f === "string"))) errors.push(`${at}: "features" must be a list of text`);
+  if (l.listedOn != null && l.listedOn !== "" && !/^\d{4}-\d{2}-\d{2}$/.test(l.listedOn)) errors.push(`${at}: "listedOn" must be a date like 2026-10-28`);
+  if (l.description != null && typeof l.description !== "string") errors.push(`${at}: "description" must be text`);
+  if (l.lotSize != null && typeof l.lotSize !== "string") errors.push(`${at}: "lotSize" must be text`);
 });
 
 if (errors.length) {
   console.error(`\nbrokerage-listings.json has ${errors.length} problem(s):\n - ` + errors.join("\n - ") + "\n");
   process.exit(1);
 }
-console.log(`brokerage-listings.json OK: ${data.listings.length} listing(s), ${data.enabled ? "SHOWN on site" : "hidden (enabled: false)"}`);
+const hostList = [...hosts].sort().join(", ") || "none";
+console.log(`brokerage-listings.json OK: ${listings.length} listing(s), ${enabled ? "SHOWN on site" : "hidden (enabled: false)"}, photo hosts: ${hostList}`);

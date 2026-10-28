@@ -97,6 +97,11 @@ footer{background:#031E7C;color:#A7B3DE;padding:80px 0 28px;border-top:1px solid
 .btn.o:hover,.iv .btn.o:hover{background:linear-gradient(135deg,#F0DB9C,#C9A45C 55%,#A27E36);color:#1A1208}
 .fab{overflow:hidden;transition:transform .35s ease,box-shadow .35s ease}.fab:after{content:"";position:absolute;top:0;left:-120%;width:50%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.6),transparent);transform:skewX(-20deg);animation:sw1 6s ease-in-out infinite}.fab:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(201,164,92,.45)}
 .ph2:before,.hd:before{content:"";position:absolute;inset:0;background:inherit;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}.lc:hover .ph2:before,.hd:hover:before{transform:scale(1.08)}
+.ph2:after{z-index:1}
+.ph2.phimg{background:#E7EBF4}
+.ph2.phimg:before{content:none}
+.ph2 .phphoto{object-fit:cover;z-index:0;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.lc:hover .ph2 .phphoto{transform:scale(1.08)}
 .fr{overflow:hidden}.fr .im,.fr .pic{transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}.fr:hover .im,.fr:hover .pic{transform:scale(1.05)}
 .lc .lt,.bl h3{transition:color .35s}.lc:hover .lt{color:#8A6420!important}.bl a{transition:color .3s,border-color .3s}.bl:hover a{border-color:var(--gl)}
 .tm,.strip,.pt,.sb{transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s ease,border-color .5s ease}.tm:hover{transform:translateY(-6px);box-shadow:0 24px 54px rgba(5,40,138,.22)}.strip:hover{transform:translateY(-4px);box-shadow:0 22px 50px rgba(5,40,138,.3)}.pt:hover{border-color:var(--gold);transform:translateY(-3px)}.sb:hover{border-top-color:var(--gl)}

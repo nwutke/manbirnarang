@@ -1,9 +1,12 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import ShareButton from "./ShareButton";
 import { CATEGORIES, money, type Listing } from "@/lib/types";
+
+const FOR_SALE = /^for sale$/i;
 
 const I = {
   bed: <path d="M3 18v-7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v7M3 15h18M7 9V6h10v3" />,
@@ -22,43 +25,70 @@ function Icon({ d, fill }: { d: React.ReactNode; fill?: boolean }) {
 }
 
 export function Card({ l }: { l: Listing }) {
+  const href = l.sourceUrl ?? "";
+  const external = href.startsWith("https://");
   const sold = l.status === "Sold";
   const cover = l.photos[0];
-  const bg = cover ? { background: `url("${cover}") 50% 50%/cover no-repeat` } : undefined;
+  const remote = Boolean(external && cover && cover.startsWith("https://"));
+  const bg = !remote && cover ? { background: `url("${cover}") 50% 50%/cover no-repeat` } : undefined;
+  const priceText = l.priceLabel || (l.price > 0 ? money(l.price) : "");
+  const saleLabel = FOR_SALE.test(l.status) ? "For Sale" : l.status;
+  const primary = external ? (sold ? "Sold" : saleLabel) : (sold ? "Sold" : "For Sale");
+  const extra = !external && !sold && l.status && l.status !== "For sale" ? l.status : "";
+  const name = l.title || "Property listing";
+  const label = [name, priceText, external ? "opens in a new tab" : ""].filter(Boolean).join(", ");
+  const showBeds = l.beds > 0;
+  const showBaths = l.baths > 0;
+  const showSqft = l.sqft > 0;
+  const showPin = Boolean(l.location);
+  const showCam = !external;
   return (
     <article className="lc lcl">
-      {l.sourceUrl ? (
-        <a href={l.sourceUrl} target="_blank" rel="noopener noreferrer" className="lcover" aria-label={`${l.title}, ${money(l.price)}, on RE/MAX (opens in a new tab)`} />
+      {external ? (
+        <a href={href} target="_blank" rel="noopener noreferrer" className="lcover" aria-label={label} />
       ) : (
-        <Link href={`/${l.slug}`} className="lcover" aria-label={`${l.title}, ${money(l.price)}`} />
+        <Link href={`/${l.slug}`} className="lcover" aria-label={label} />
       )}
-      <div className="ph2 f1" style={bg}>
+      <div className={"ph2 f1" + (remote ? " phimg" : "")} style={bg}>
+        {remote && cover ? (
+          <Image src={cover} alt="" fill sizes="(max-width: 760px) 100vw, (max-width: 1400px) 50vw, 33vw" className="phphoto" />
+        ) : null}
         <div className="bd">
           {l.featured ? <span className="pill">Featured</span> : <span />}
           <div className="bd2">
-            <span className={"pill" + (sold ? " sold" : "")}>{sold ? "Sold" : "For Sale"}</span>
-            {!sold && l.status && l.status !== "For sale" ? <span className="pill">{l.status}</span> : null}
+            {primary ? <span className={"pill" + (sold ? " sold" : "")}>{primary}</span> : null}
+            {extra ? <span className="pill">{extra}</span> : null}
           </div>
         </div>
-        <div className="pl">
-          <span><Icon d={I.pin} fill />{l.location}</span>
-          {l.sourceUrl ? null : <span><Icon d={I.cam} fill />{l.photoCount ?? l.photos.length}</span>}
-        </div>
+        {showPin || showCam ? (
+          <div className="pl">
+            {showPin ? <span><Icon d={I.pin} fill />{l.location}</span> : <span />}
+            {showCam ? <span><Icon d={I.cam} fill />{l.photoCount ?? l.photos.length}</span> : null}
+          </div>
+        ) : null}
       </div>
-      <h3 className="lt">{l.title}</h3>
-      <div className="lpr">{money(l.price)}</div>
+      {l.title ? <h3 className="lt">{l.title}</h3> : null}
+      {priceText ? <div className="lpr">{priceText}</div> : null}
       {l.description ? <p className="ld">{l.description}</p> : null}
-      <div className="lspec">
-        {l.beds > 0 ? <span><Icon d={I.bed} />{l.beds}</span> : null}
-        {l.baths > 0 ? <span><Icon d={I.bath} />{l.baths}</span> : null}
-        {l.sqft > 0 ? <span><Icon d={I.area} />{l.sqft.toLocaleString("en-CA")} ft²</span> : null}
-      </div>
+      {showBeds || showBaths || showSqft ? (
+        <div className="lspec">
+          {showBeds ? <span><Icon d={I.bed} />{l.beds}</span> : null}
+          {showBaths ? <span><Icon d={I.bath} />{l.baths}</span> : null}
+          {showSqft ? <span><Icon d={I.area} />{l.sqft.toLocaleString("en-CA")} ft²</span> : null}
+        </div>
+      ) : null}
       <div className="lag">
-        {l.listedBy ? <div className="who whob">Listed by {l.listedBy}</div> : <div className="who"><i className="av" />Manbir Narang</div>}
-        <ShareButton path={l.sourceUrl ?? `/${l.slug}`} title={l.title} text={`${l.title}, ${money(l.price)}. ${l.location}`} />
+        {l.listedBy ? (
+          <div className="who whob">Listed by {l.listedBy}</div>
+        ) : external ? (
+          <span />
+        ) : (
+          <div className="who"><i className="av" />Manbir Narang</div>
+        )}
+        <ShareButton path={external ? href : `/${l.slug}`} title={name} text={[l.title, priceText, l.location].filter(Boolean).join(", ")} />
       </div>
-      {l.sourceUrl ? (
-        <a className="btn o lcagent" href={l.sourceUrl} target="_blank" rel="noopener noreferrer">Contact agent ↗</a>
+      {external ? (
+        <a className="btn o lcagent" href={href} target="_blank" rel="noopener noreferrer">Contact agent ↗</a>
       ) : null}
     </article>
   );
