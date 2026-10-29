@@ -412,3 +412,19 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
   .pgrid{grid-template-columns:1fr;gap:48px}
   .phead h2{font-size:30px}
 }
+
+/* Realtor.ca card at the bottom of /properties */
+.rcmore{margin-top:72px}
+.rcmore .strip{align-items:center}
+.rcmore .strip p{margin:0;max-width:40rem}
+.rcmore .strip .btn{flex:none;text-align:center}
+.rcin{color:var(--gl);border-bottom:1px solid var(--gold)}
+.rcin:hover{color:#fff;border-bottom-color:var(--gl)}
+.iv .rcmore a:focus-visible{outline-color:var(--gl)}
+@media(max-width:1040px){
+  .rcmore .strip{flex-direction:column;align-items:stretch;gap:22px}
+  .rcmore .strip .btn{width:100%;white-space:normal;line-height:1.55;max-width:100%}
+}
+@media(max-width:700px){
+  .rcmore{margin-top:48px}
+}
