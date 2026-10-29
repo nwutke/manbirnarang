@@ -2,37 +2,26 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { getSupabase } from "@/lib/supabase";
+import { submitInquiry } from "@/lib/submit-inquiry";
 
 type Kind = "contact" | "valuation";
 
-export default function EnquiryForm({ kind, button, listing }: { kind: Kind; button: string; listing?: string }) {
+export default function EnquiryForm({ kind, button, listing, source }: { kind: Kind; button: string; listing?: string; source: string }) {
   const [state, setState] = useState<"idle" | "sending" | "sent" | "error" | "offline">("idle");
 
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const f = new FormData(e.currentTarget);
-    if (f.get("website")) return; // honeypot
-    const sb = getSupabase();
-    if (!sb) {
-      setState("offline");
+    const form = e.currentTarget;
+    const f = new FormData(form);
+    if (String(f.get("website") || "").trim()) return; // honeypot: leave the form as it is
+    setState("sending");
+    const result = await submitInquiry(f, { kind, source, listing });
+    if (!result.ok) {
+      setState(result.error === "offline" ? "offline" : "error");
       return;
     }
-    setState("sending");
-    const { error } = await sb.from("inquiries").insert({
-      kind,
-      name: String(f.get("name") || ""),
-      email: String(f.get("email") || ""),
-      phone: String(f.get("phone") || "") || null,
-      address: String(f.get("address") || "") || null,
-      interest: String(f.get("interest") || "") || null,
-      message: String(f.get("message") || "") || null,
-    });
-    if (error) setState("error");
-    else {
-      setState("sent");
-      e.currentTarget.reset();
-    }
+    form.reset();
+    setState("sent");
   }
 
   if (state === "sent") {
@@ -47,10 +36,10 @@ export default function EnquiryForm({ kind, button, listing }: { kind: Kind; but
   return (
     <form onSubmit={submit} className="fform">
       {listing ? <input type="hidden" name="address" value={listing} /> : null}
-      {kind === "valuation" ? <input className="fi" name="address" placeholder="Property address" required autoComplete="street-address" /> : null}
-      <input className="fi" name="name" placeholder="Full name" required autoComplete="name" />
-      <input className="fi" name="email" type="email" placeholder="Email" required autoComplete="email" />
-      <input className="fi" name="phone" type="tel" placeholder="Phone (optional)" autoComplete="tel" />
+      {kind === "valuation" ? <input className="fi" name="address" placeholder="Property address" required autoComplete="street-address" maxLength={500} /> : null}
+      <input className="fi" name="name" placeholder="Full name" required autoComplete="name" maxLength={200} />
+      <input className="fi" name="email" type="email" placeholder="Email" required autoComplete="email" maxLength={320} />
+      <input className="fi" name="phone" type="tel" placeholder="Phone (optional)" autoComplete="tel" maxLength={40} />
       {kind === "contact" ? (
         <>
           <select className="fi" name="interest" defaultValue={listing ? "Buying" : ""}>
@@ -59,7 +48,7 @@ export default function EnquiryForm({ kind, button, listing }: { kind: Kind; but
             <option>Selling</option>
             <option>Something else</option>
           </select>
-          <textarea className="fi" name="message" rows={4} placeholder="Message" defaultValue={listing ? `Hi Manbir, I'd like more information about ${listing}.` : undefined} />
+          <textarea className="fi" name="message" rows={4} placeholder="Message" maxLength={5000} defaultValue={listing ? `Hi Manbir, I'd like more information about ${listing}.` : undefined} />
         </>
       ) : null}
       <input name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hp" />

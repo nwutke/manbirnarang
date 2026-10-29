@@ -175,7 +175,7 @@ export default async function ListingPage({ params }: Props) {
           <h2>Interested in {l.title}?</h2>
           <p>Ask a question or book a showing. I will reply personally within one business day.</p>
           <div className="lform">
-            <EnquiryForm kind="contact" button="Send to Manbir" listing={l.title} />
+            <EnquiryForm kind="contact" button="Send to Manbir" listing={l.title} source={`/${l.slug}`} />
           </div>
           <p className="lalt">Prefer to talk? Call <a href={tel}>{PHONE}</a></p>
         </div>

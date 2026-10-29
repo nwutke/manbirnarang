@@ -65,6 +65,28 @@ cp .env.example .env.local   # then fill in the values
 npm run dev                  # http://localhost:3000
 ```
 
+## Enquiry emails
+
+The contact form (home and the Contact page), the home valuation form (Sell), and the inquiry form on Manbir’s own listing pages all save to the Supabase `inquiries` table and also email a notification. There is no separate buy form and no newsletter form. The Buy page only links people to Contact.
+
+The browser posts the form to a server action. That action inserts the row with the existing anon key (`NEXT_PUBLIC_SUPABASE_ANON_KEY`). The database already allows an anonymous insert and blocks anonymous reads, so a service-role key is not used. The Resend API key stays on the server.
+
+Set these in Vercel → Project → Settings → Environment Variables → Production, then redeploy:
+
+| Variable | Purpose |
+| --- | --- |
+| `LEAD_NOTIFY_EMAIL` | Who gets the notification. Comma-separated if there is more than one. For testing use `nicholaswutke@gmail.com`. Change this to Manbir’s address when you are ready. |
+| `RESEND_API_KEY` | API key from [resend.com/api-keys](https://resend.com/api-keys). |
+| `LEAD_FROM_EMAIL` | Sender address. Use `onboarding@resend.dev` until a domain is verified in Resend. |
+
+`NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, and `NEXT_PUBLIC_SITE_URL` are still required. The site URL is included in the email so the page link is absolute.
+
+If `RESEND_API_KEY` or `LEAD_NOTIFY_EMAIL` is missing, or Resend rejects the send, the enquiry is still saved and the visitor still sees the thank-you message. The failure is written to the server log (Vercel → Project → Logs).
+
+`onboarding@resend.dev` only delivers to the email address on the Resend account. If that is not `nicholaswutke@gmail.com`, either sign up to Resend with that inbox or verify a domain and set `LEAD_FROM_EMAIL` to an address on it (for example `Manbir Narang <inquiries@manbirnarang.ca>`).
+
+To test after a deploy: submit the home contact form, the Contact page form, the Sell valuation form, and a listing inquiry. Each should show “Thank you.”, appear on `/admin` under Enquiries, and arrive with the subject `New website inquiry: <form type> from <name>`. Reply goes to the address the visitor typed. A hidden honeypot field drops spam without saving it.
+
 ## Brokerage listings on the Properties page
 
 Cards for the other RE/MAX Mid-Island Realty listings are read from `content/brokerage-listings.json`. Manbir's own listings still come from Supabase and stay first. Each brokerage card opens that listing's page on midislandrealty.com in a new tab. The Properties page shows 12 cards at a time.
@@ -87,7 +109,7 @@ To hide the brokerage cards without deleting the list, wrap the array as `{ "ena
 ## Notes
 
 - The site works without Supabase connected (your own listings stay hidden, and the forms say they are not connected), so you can preview it first.
-- Only the public anon key is used in the browser. Security comes from the database rules in `supabase/schema.sql`: visitors can read published listings and send enquiries, and only your signed-in admin can change anything.
+- The public anon key is what the browser uses to read listings, and what the enquiry server action uses to insert a message. Security comes from the database rules in `supabase/schema.sql`: visitors can read published listings and send enquiries, and only your signed-in admin can change anything. The Resend key is not sent to the browser.
 - Not built yet: a page for each individual listing, and a live MLS feed. Both can be added later.
 
 ## Writing blog articles

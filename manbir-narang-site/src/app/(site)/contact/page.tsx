@@ -15,7 +15,7 @@ export default function Contact() {
       <section className="iv">
         <div className="w">
           <div className="two" style={{ alignItems: "start" }}>
-            <EnquiryForm kind="contact" button="Send message" />
+            <EnquiryForm kind="contact" button="Send message" source="/contact" />
             <div>
               <div className="fr">
                 <iframe
