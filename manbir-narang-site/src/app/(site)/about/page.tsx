@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import Stats from "@/components/Stats";
 import { Cta, Orn, PageHead } from "@/components/ui";
-import { STATS4 } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "About Manbir",
@@ -30,7 +28,6 @@ export default function About() {
           </div>
         </div>
       </section>
-      <Stats items={STATS4} />
       <section className="dk q">
         <div className="w narrow">
           <Orn />

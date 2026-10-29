@@ -1,5 +1,11 @@
 "use client";
 
+/**
+ * Animated stat strip. Not mounted on any page right now.
+ * The figures in STATS5, STATS4, and STATS_SELL (src/lib/data.ts) are placeholders.
+ * Render <Stats items={...} /> again when the numbers are real.
+ */
+
 import { useEffect, useRef } from "react";
 
 export default function Stats({ items }: { items: [string, string][] }) {
