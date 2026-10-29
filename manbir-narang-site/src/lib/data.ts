@@ -10,6 +10,11 @@ export const HOODS = [
   { cls: "h1 pf1", name: "Sproat Lake", text: "Warm, calm water, sandy shores, and some of the valley’s most sought-after lakefront homes.", avg: "From $900K", life: "Lakefront" },
 ];
 
+/**
+ * Not rendered. Home “Client feedback” used these cards.
+ * About also had this pull quote, not rendered:
+ * “From the first showing to the final signature, the experience was flawless.” — Client name, Port Alberni
+ */
 export const TESTIMONIALS = [
   { q: "Manbir made buying our lakefront home feel effortless. He answered every question and never rushed us.", who: "Client name", where: "Happy client · Sproat Lake" },
   { q: "Our home sold quickly and above our expectations. His marketing was beautiful and his advice was honest.", who: "Client name", where: "Happy client · Port Alberni" },

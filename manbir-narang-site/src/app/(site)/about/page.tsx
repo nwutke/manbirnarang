@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cta, Orn, PageHead } from "@/components/ui";
+import { Cta, PageHead } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "About Manbir",
@@ -26,13 +26,6 @@ export default function About() {
               <div>Service area<span>Port Alberni and the Alberni Valley</span></div>
             </div>
           </div>
-        </div>
-      </section>
-      <section className="dk q">
-        <div className="w narrow">
-          <Orn />
-          <h2>“From the first showing to the final signature, the experience was flawless.”</h2>
-          <span>Client name, Port Alberni</span>
         </div>
       </section>
       <Cta title="Let’s work together." text="Tell me about your plans." button="Get in touch" href="/contact" />

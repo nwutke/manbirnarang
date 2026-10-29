@@ -68,6 +68,7 @@ export function Steps({ items }: { items: [string, string, string][] }) {
   );
 }
 
+/** Starred review cards. Not mounted. Pass TESTIMONIALS from src/lib/data.ts to show them again. */
 export function Testimonials({ items }: { items: { q: string; who: string; where: string }[] }) {
   return (
     <div className="g2">

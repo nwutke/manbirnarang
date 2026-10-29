@@ -3,9 +3,9 @@ import Hero from "@/components/Hero";
 import Listings from "@/components/Listings";
 import Calculator from "@/components/Calculator";
 import EnquiryForm from "@/components/EnquiryForm";
-import { Btn, SectionHead, Testimonials } from "@/components/ui";
+import { Btn, SectionHead } from "@/components/ui";
 import { getListings } from "@/lib/listings";
-import { EMAIL, HOODS, OFFICE, PHONE, TESTIMONIALS } from "@/lib/data";
+import { EMAIL, HOODS, OFFICE, PHONE } from "@/lib/data";
 import PostCard from "@/components/PostCard";
 import BrokerageListings from "@/components/BrokerageListings";
 import { getBrokerageListings } from "@/lib/brokerage";
@@ -111,14 +111,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="dk">
-        <div className="w">
-          <SectionHead title="Client feedback" sub="Kind words from the families I have worked with." />
-          <Testimonials items={TESTIMONIALS} />
-        </div>
-      </section>
-
-      <section className="iv">
+      <section className="iv" style={{ paddingTop: 0 }}>
         <div className="w">
           <SectionHead title="Real estate blog" sub="Local advice for buyers and sellers in the Alberni Valley." />
           <div className="g4">
