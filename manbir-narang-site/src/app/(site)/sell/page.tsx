@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import EnquiryForm from "@/components/EnquiryForm";
-import Stats from "@/components/Stats";
 import { Cta, PageHead, SectionHead, Steps } from "@/components/ui";
-import { STATS_SELL } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Sell your home",
@@ -38,7 +36,6 @@ export default function Sell() {
           />
         </div>
       </section>
-      <Stats items={STATS_SELL} />
       <Cta title="Let’s talk about selling." text="Book a free consultation to plan your sale." button="Contact Manbir" href="/contact" />
     </>
   );

@@ -1,12 +1,11 @@
 import Link from "next/link";
 import Hero from "@/components/Hero";
-import Stats from "@/components/Stats";
 import Listings from "@/components/Listings";
 import Calculator from "@/components/Calculator";
 import EnquiryForm from "@/components/EnquiryForm";
 import { Btn, SectionHead, Testimonials } from "@/components/ui";
 import { getListings } from "@/lib/listings";
-import { EMAIL, HOODS, OFFICE, PHONE, STATS5, TESTIMONIALS } from "@/lib/data";
+import { EMAIL, HOODS, OFFICE, PHONE, TESTIMONIALS } from "@/lib/data";
 import PostCard from "@/components/PostCard";
 import BrokerageListings from "@/components/BrokerageListings";
 import { getBrokerageListings } from "@/lib/brokerage";
@@ -90,8 +89,6 @@ export default async function Home() {
           </div>
         </div>
       </section>
-
-      <Stats items={STATS5} />
 
       <section className="iv">
         <div className="w">

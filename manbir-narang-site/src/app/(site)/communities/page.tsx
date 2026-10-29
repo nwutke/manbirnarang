@@ -20,7 +20,6 @@ export default function Communities() {
                 <h2>{h.name}</h2>
                 <p className="lead">{h.text}</p>
                 <div className="cr">
-                  <div>Average home<span>{h.avg}</span></div>
                   <div>Lifestyle<span>{h.life}</span></div>
                 </div>
                 <Btn href="/properties">{`View homes in ${h.name}`}</Btn>
