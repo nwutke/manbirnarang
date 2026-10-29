@@ -15,7 +15,7 @@ export default function Communities() {
         <div className="w">
           {HOODS.map((h, i) => (
             <div className={"row" + (i % 2 ? " flip" : "")} key={h.name}>
-              <div className="fr"><div className={"im " + h.cls} /></div>
+              <div className="fr">{h.photo ? <img className="im" src={h.photo} alt={h.alt} /> : <div className={"im " + h.cls} />}</div>
               <div>
                 <h2>{h.name}</h2>
                 <p className="lead">{h.text}</p>
