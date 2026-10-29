@@ -15,13 +15,17 @@ export default function EnquiryForm({ kind, button, listing, source }: { kind: K
     const f = new FormData(form);
     if (String(f.get("website") || "").trim()) return; // honeypot: leave the form as it is
     setState("sending");
-    const result = await submitInquiry(f, { kind, source, listing });
-    if (!result.ok) {
-      setState(result.error === "offline" ? "offline" : "error");
-      return;
+    try {
+      const result = await submitInquiry(f, { kind, source, listing });
+      if (!result.ok) {
+        setState(result.error === "offline" ? "offline" : "error");
+        return;
+      }
+      form.reset();
+      setState("sent");
+    } catch {
+      setState("error");
     }
-    form.reset();
-    setState("sent");
   }
 
   if (state === "sent") {

@@ -1,6 +1,8 @@
 "use server";
 
-import { Resend } from "resend";
+import http from "node:http";
+import https from "node:https";
+import { connection } from "next/server";
 import { getSupabase } from "@/lib/supabase";
 
 type InquiryResult = { ok: true } | { ok: false; error: "offline" | "invalid" | "save" };
@@ -28,10 +30,11 @@ function formType(kind: Kind, listing: string): string {
   return "Contact";
 }
 
-function pageLabel(source: string): string {
-  const path = oneLine(source).slice(0, 300);
+function pageLabel(source: unknown): string {
+  const path = oneLine(typeof source === "string" ? source : "").slice(0, 300);
   if (!path) return "(not provided)";
-  const base = process.env.NEXT_PUBLIC_SITE_URL?.trim().replace(/\/$/, "") ?? "";
+  const base = (process.env.NEXT_PUBLIC_SITE_URL ?? "").trim().replace(/\/$/, "");
+  // Home sends source="/", which must stay distinct from a missing page.
   if (path.startsWith("/") && base) return `${base}${path}`;
   return path;
 }
@@ -87,35 +90,81 @@ function emailBody(input: {
   ].join("\n");
 }
 
+function resendMessage(raw: string): string {
+  try {
+    const parsed = JSON.parse(raw) as { message?: string; name?: string };
+    return (parsed.message || parsed.name || raw).slice(0, 500);
+  } catch {
+    return raw.slice(0, 500);
+  }
+}
+
+/** POST to Resend with Node's HTTP client so the home page's ISR fetch patch cannot skip the call. */
+function postResend(apiKey: string, payload: string): Promise<{ status: number; body: string }> {
+  const base = (process.env.RESEND_BASE_URL || "https://api.resend.com").trim().replace(/\/$/, "");
+  const url = new URL(`${base}/emails`);
+  const transport = url.protocol === "http:" ? http : https;
+  return new Promise((resolve, reject) => {
+    const req = transport.request(
+      {
+        protocol: url.protocol,
+        hostname: url.hostname,
+        port: url.port || undefined,
+        path: `${url.pathname}${url.search}`,
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+          "Content-Type": "application/json",
+          "Content-Length": Buffer.byteLength(payload),
+          "User-Agent": "manbir-narang-site",
+        },
+      },
+      (res) => {
+        const chunks: Buffer[] = [];
+        res.on("data", (chunk) => chunks.push(chunk));
+        res.on("end", () => resolve({ status: res.statusCode ?? 0, body: Buffer.concat(chunks).toString("utf8") }));
+      },
+    );
+    req.on("error", reject);
+    req.write(payload);
+    req.end();
+  });
+}
+
 /** Best-effort. A missing key or a send failure must not undo a saved enquiry. */
 async function notify(input: Parameters<typeof emailBody>[0] & { replyTo: string }): Promise<void> {
-  const apiKey = process.env.RESEND_API_KEY?.trim();
+  const where = `page=${input.page} form=${input.formType}`;
+  const apiKey = (process.env.RESEND_API_KEY ?? "").trim();
   const to = notifyRecipients();
   if (!apiKey) {
-    console.error("[inquiry] RESEND_API_KEY is not set; enquiry was saved and no email was sent");
-    return;
-  }
-  if ((process.env.LEAD_NOTIFY_EMAIL ?? "").trim() && to.length === 0) {
-    console.error("[inquiry] LEAD_NOTIFY_EMAIL has no valid address; enquiry was saved and no email was sent");
+    console.error(`[inquiry] email skipped ${where} reason=RESEND_API_KEY missing`);
     return;
   }
   if (to.length === 0) {
-    console.error("[inquiry] LEAD_NOTIFY_EMAIL is not set; enquiry was saved and no email was sent");
+    console.error(`[inquiry] email skipped ${where} reason=LEAD_NOTIFY_EMAIL missing or invalid`);
     return;
   }
-  const from = process.env.LEAD_FROM_EMAIL?.trim() || DEFAULT_FROM;
+  const from = (process.env.LEAD_FROM_EMAIL ?? "").trim() || DEFAULT_FROM;
+  const payload = JSON.stringify({
+    from,
+    to,
+    reply_to: input.replyTo,
+    subject: oneLine(`New website inquiry: ${input.formType} from ${input.name}`).slice(0, 200),
+    text: emailBody(input),
+  });
   try {
-    const resend = new Resend(apiKey);
-    const { error } = await resend.emails.send({
-      from,
-      to,
-      replyTo: input.replyTo,
-      subject: oneLine(`New website inquiry: ${input.formType} from ${input.name}`).slice(0, 200),
-      text: emailBody(input),
-    });
-    if (error) console.error("[inquiry] Resend rejected the notification", error);
+    console.info(`[inquiry] email sending ${where}`);
+    const result = await postResend(apiKey, payload);
+    if (result.status >= 200 && result.status < 300) {
+      let id = "";
+      try { id = String((JSON.parse(result.body) as { id?: string }).id ?? ""); } catch { /* ignore */ }
+      console.info(`[inquiry] email sent ${where} id=${id || "unknown"}`);
+      return;
+    }
+    console.error(`[inquiry] email failed ${where} status=${result.status} message=${resendMessage(result.body)}`);
   } catch (err) {
-    console.error("[inquiry] Resend notification failed", err);
+    const message = err instanceof Error ? err.message : String(err);
+    console.error(`[inquiry] email failed ${where} status=0 message=${message}`);
   }
 }
 
@@ -166,18 +215,31 @@ export async function submitInquiry(
   }
 
   const label = formType(kind, listing);
-  await notify({
-    formType: label,
-    name,
-    email,
-    phone,
-    address,
-    interest,
-    message,
-    listing,
-    page: pageLabel(meta.source),
-    submitted: vancouverStamp(),
-    replyTo: email,
-  });
+  // Home is the only form on an ISR route (revalidate = 60) and posts this
+  // action to "/". connection() pins the send to the real request.
+  try {
+    await connection();
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    console.error(`[inquiry] connection() failed page=${String(meta.source)} message=${message}`);
+  }
+  try {
+    await notify({
+      formType: label,
+      name,
+      email,
+      phone,
+      address,
+      interest,
+      message,
+      listing,
+      page: pageLabel(meta?.source),
+      submitted: vancouverStamp(),
+      replyTo: email,
+    });
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    console.error(`[inquiry] email failed page=${String(meta?.source)} form=${label} status=0 message=${message}`);
+  }
   return { ok: true };
 }
