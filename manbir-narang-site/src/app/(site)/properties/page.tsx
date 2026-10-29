@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import BrokerageListings from "@/components/BrokerageListings";
 import PropertySearch from "@/components/PropertySearch";
 import { Cta, PageHead } from "@/components/ui";
@@ -25,6 +26,17 @@ export default async function Properties() {
             <BrokerageListings />
           </>
         ) : null}
+        <div className="w wide rcmore">
+          <div className="strip">
+            <p>
+              Found a listing on Realtor.ca that you like?{" "}
+              <Link href="/contact" className="rcin">Contact Manbir</Link>
+            </p>
+            <a className="btn" href="https://www.realtor.ca" target="_blank" rel="noopener noreferrer">
+              View more listings on REALTOR.CA
+            </a>
+          </div>
+        </div>
       </section>
       <Cta title="Can’t find what you’re looking for?" text="Tell me what you want and I will watch the market for you." button="Contact Manbir" href="/contact" />
     </>
