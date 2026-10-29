@@ -2,11 +2,11 @@ export const PHONE = "250-720-5509";
 export const EMAIL = "manbirnarangrealestate@gmail.com";
 export const OFFICE = "RE/MAX Mid-Island Realty, 4201 Johnston Road, Port Alberni";
 
-export const HOODS = [
+export const HOODS: { cls: string; name: string; text: string; avg: string; life: string; photo?: string; alt?: string }[] = [
   // `avg` is a placeholder price and is not rendered. Put it back on the communities page when the figures are real.
   { cls: "h4 pf5", name: "Port Alberni", text: "Uptown and Harbour Quay living with shops, schools, and every convenience.", avg: "From $450K", life: "Town" },
-  { cls: "h3 pf3", name: "Beaver Creek", text: "Quiet rural acreage with space, privacy, and mountain scenery close to town.", avg: "From $800K", life: "Acreage" },
-  { cls: "h5 pf6", name: "Cherry Creek", text: "Open farmland and country estates with room to breathe.", avg: "From $850K", life: "Rural" },
+  { cls: "h3", name: "Beaver Creek", text: "Quiet rural acreage with space, privacy, and mountain scenery close to town.", avg: "From $800K", life: "Acreage", photo: "/images/beaver-creek.jpg", alt: "Acreage home in Beaver Creek" },
+  { cls: "h5", name: "Cherry Creek", text: "Open farmland and country estates with room to breathe.", avg: "From $850K", life: "Rural", photo: "/images/cherry-creek.jpg", alt: "Acreage home in Cherry Creek" },
   { cls: "h1 pf1", name: "Sproat Lake", text: "Warm, calm water, sandy shores, and some of the valley’s most sought-after lakefront homes.", avg: "From $900K", life: "Lakefront" },
 ];
 

@@ -66,6 +66,7 @@ export default async function Home() {
           <div className="hoods3">
             {HOODS.map((h) => (
               <Link href="/communities" className={"hd " + h.cls} key={h.name}>
+                {h.photo ? <img className="hdphoto" src={h.photo} alt={h.alt} /> : null}
                 <span>{h.name}</span>
               </Link>
             ))}
