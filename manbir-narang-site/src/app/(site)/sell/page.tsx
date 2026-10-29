@@ -17,7 +17,7 @@ export default function Sell() {
             <div>
               <h2>What is your home worth?</h2>
               <p className="lead">Get a free, no-obligation valuation based on recent local sales.</p>
-              <EnquiryForm kind="valuation" button="Request my valuation" />
+              <EnquiryForm kind="valuation" button="Request my valuation" source="/sell" />
             </div>
             <div className="fr"><div className="im pf6" style={{ height: 500 }} /></div>
           </div>

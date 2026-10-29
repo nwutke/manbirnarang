@@ -136,7 +136,7 @@ export default async function Home() {
                 <div>Office<span>{OFFICE}</span></div>
               </div>
             </div>
-            <EnquiryForm kind="contact" button="Send message" />
+            <EnquiryForm kind="contact" button="Send message" source="/" />
           </div>
         </div>
       </section>
