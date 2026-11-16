@@ -1,5 +1,389 @@
 [
   {
+    "address": "912 Barkley Pl",
+    "city": "Ucluelet",
+    "price": 649000,
+    "priceText": "$649,000",
+    "propertyType": "Vacant Land",
+    "mlsNumber": "1037279",
+    "photo": "https://ddfcdn.realtor.ca/listings/TS639147998744070000/reb1/highres/9/1037279_1.jpg",
+    "url": "https://midislandrealty.com/listing/912-barkley-pl-ucluelet-british-columbia-v0r-3a0-29771672/"
+  },
+  {
+    "address": "6155 Cherry Creek Rd",
+    "city": "Port Alberni",
+    "price": 698000,
+    "priceText": "$698,000",
+    "beds": 3,
+    "baths": 2,
+    "sqft": 1588,
+    "propertyType": "Single Family",
+    "mlsNumber": "1042731",
+    "photo": "https://ddfcdn.realtor.ca/listings/TS639251677651370000/reb1/highres/1/1042731_1.jpg",
+    "url": "https://midislandrealty.com/listing/6155-cherry-creek-rd-port-alberni-british-columbia-v9y-8s6-30033084/"
+  },
+  {
+    "address": "5118 Compton Rd",
+    "city": "Port Alberni",
+    "price": 759900,
+    "priceText": "$759,900",
+    "beds": 4,
+    "baths": 2,
+    "sqft": 2139,
+    "propertyType": "Single Family",
+    "mlsNumber": "1043517",
+    "photo": "https://ddfcdn.realtor.ca/listings/TS639203473044900000/reb1/highres/7/1043517_1.jpg",
+    "url": "https://midislandrealty.com/listing/5118-compton-rd-port-alberni-british-columbia-v9y-7a5-30068516/"
+  },
+  {
+    "address": "4575 Arrowsmith Rd",
+    "city": "Port Alberni",
+    "price": 449900,
+    "priceText": "$449,900",
+    "beds": 3,
+    "baths": 1,
+    "sqft": 985,
+    "propertyType": "Single Family",
+    "mlsNumber": "1053914",
+    "photo": "https://ddfcdn.realtor.ca/listings/TS639295057242470000/reb1/highres/4/1053914_1.jpg",
+    "url": "https://midislandrealty.com/listing/4575-arrowsmith-rd-port-alberni-british-columbia-v9y-5p3-30485900/"
+  },
+  {
+    "address": "6336 Ferguson Rd",
+    "city": "Port Alberni",
+    "price": 399900,
+    "priceText": "$399,900",
+    "beds": 2,
+    "baths": 1,
+    "sqft": 1188,
+    "propertyType": "Single Family",
+    "mlsNumber": "1054280",
+    "photo": "https://ddfcdn.realtor.ca/listings/TS639302928646970000/reb1/highres/0/1054280_1.jpg",
+    "url": "https://midislandrealty.com/listing/6336-ferguson-rd-port-alberni-british-columbia-v9y-8l4-30514456/"
+  },
+  {
+    "address": "5 3774 12th Ave",
+    "city": "Port Alberni",
+    "price": 475000,
+    "priceText": "$475,000",
+    "beds": 2,
+    "baths": 2,
+    "sqft": 1339,
+    "propertyType": "Single Family",
+    "mlsNumber": "1051136",
+    "photo": "https://ddfcdn.realtor.ca/listings/TS639262969002800000/reb1/highres/6/1051136_1.jpg",
+    "url": "https://midislandrealty.com/listing/5-3774-12th-ave-port-alberni-british-columbia-v9y-5a5-30342019/"
+  },
+  {
+    "address": "4040 Clegg Cres S",
+    "city": "Port Alberni",
+    "price": 629000,
+    "priceText": "$629,000",
+    "beds": 4,
+    "baths": 3,
+    "sqft": 2180,
+    "propertyType": "Single Family",
+    "mlsNumber": "1049793",
+    "photo": "https://ddfcdn.realtor.ca/listings/TS639250890987270000/reb1/highres/3/1049793_1.jpg",
+    "url": "https://midislandrealty.com/listing/4040-clegg-cres-s-port-alberni-british-columbia-v9y-7x5-30283135/"
+  },
+  {
+    "address": "2 3258 Alberni Hwy",
+    "city": "Port Alberni",
+    "price": 167500,
+    "priceText": "$167,500",
+    "beds": 2,
+    "baths": 1,
+    "sqft": 727,
+    "propertyType": "Single Family",
+    "mlsNumber": "1051939",
+    "photo": "https://ddfcdn.realtor.ca/listings/TS639271723040900000/reb1/highres/9/1051939_1.jpg",
+    "url": "https://midislandrealty.com/listing/2-3258-alberni-hwy-port-alberni-british-columbia-v9y-8g4-30389029/"
+  },
+  {
+    "address": "204 5700 Pierce Rd",
+    "city": "Port Alberni",
+    "price": 510000,
+    "priceText": "$510,000",
+    "beds": 2,
+    "baths": 2,
+    "sqft": 1410,
+    "propertyType": "Single Family",
+    "mlsNumber": "1047919",
+    "photo": "https://ddfcdn.realtor.ca/listings/TS639233641058030000/reb1/highres/9/1047919_1.jpg",
+    "url": "https://midislandrealty.com/listing/204-5700-pierce-rd-port-alberni-british-columbia-v9y-0a3-30201606/"
+  },
+  {
+    "address": "2473 8th Ave",
+    "city": "Port Alberni",
+    "price": 342500,
+    "priceText": "$342,500",
+    "beds": 3,
+    "baths": 1,
+    "sqft": 1224,
+    "propertyType": "Single Family",
+    "mlsNumber": "1053138",
+    "photo": "https://ddfcdn.realtor.ca/listings/TS639288097124530000/reb1/highres/8/1053138_1.jpg",
+    "url": "https://midislandrealty.com/listing/2473-8th-ave-port-alberni-british-columbia-v9y-2l8-30454992/"
+  },
+  {
+    "address": "15 4935 Broughton St",
+    "city": "Port Alberni",
+    "price": 249000,
+    "priceText": "$249,000",
+    "beds": 3,
+    "baths": 1,
+    "sqft": 960,
+    "propertyType": "Single Family",
+    "mlsNumber": "1041985",
+    "photo": "https://ddfcdn.realtor.ca/listings/TS639186829392870000/reb1/highres/5/1041985_1.jpg",
+    "url": "https://midislandrealty.com/listing/15-4935-broughton-st-port-alberni-british-columbia-v9y-8g7-29985785/"
+  },
+  {
+    "address": "101 5535 Woodland Cres E",
+    "city": "Port Alberni",
+    "price": 475000,
+    "priceText": "$475,000",
+    "beds": 3,
+    "baths": 3,
+    "sqft": 1372,
+    "propertyType": "Single Family",
+    "mlsNumber": "1029359",
+    "photo": "https://ddfcdn.realtor.ca/listings/TS639246631308900000/reb1/highres/9/1029359_1.jpg",
+    "url": "https://midislandrealty.com/listing/101-5535-woodland-cres-e-port-alberni-british-columbia-v9y-8e6-29536402/"
+  },
+  {
+    "address": "104 5535 Woodland Cres E",
+    "city": "Port Alberni",
+    "price": 435000,
+    "priceText": "$435,000",
+    "beds": 3,
+    "baths": 3,
+    "sqft": 1372,
+    "propertyType": "Single Family",
+    "mlsNumber": "1029368",
+    "photo": "https://ddfcdn.realtor.ca/listings/TS639250086973970000/reb1/highres/8/1029368_1.jpg",
+    "url": "https://midislandrealty.com/listing/104-5535-woodland-cres-e-port-alberni-british-columbia-v9y-8e6-29536401/"
+  },
+  {
+    "address": "3039 5th Ave",
+    "city": "Port Alberni",
+    "price": 499000,
+    "priceText": "$499,000",
+    "beds": 4,
+    "baths": 4,
+    "sqft": 2307,
+    "propertyType": "Single Family",
+    "mlsNumber": "1028663",
+    "photo": "https://ddfcdn.realtor.ca/listings/TS639257796715600000/reb1/highres/3/1028663_1.jpg",
+    "url": "https://midislandrealty.com/listing/3039-5th-ave-port-alberni-british-columbia-v9y-2e4-29492723/"
+  },
+  {
+    "address": "108 5535 Woodland Cres E",
+    "city": "Port Alberni",
+    "price": 460000,
+    "priceText": "$460,000",
+    "beds": 3,
+    "baths": 3,
+    "sqft": 1372,
+    "propertyType": "Single Family",
+    "mlsNumber": "1029429",
+    "photo": "https://ddfcdn.realtor.ca/listings/TS639201714445930000/reb1/highres/9/1029429_1.jpg",
+    "url": "https://midislandrealty.com/listing/108-5535-woodland-cres-e-port-alberni-british-columbia-v9y-8e6-29536399/"
+  },
+  {
+    "address": "10 5450 Tomswood Rd",
+    "city": "Port Alberni",
+    "price": 679000,
+    "priceText": "$679,000",
+    "beds": 3,
+    "baths": 2,
+    "sqft": 1500,
+    "propertyType": "Single Family",
+    "mlsNumber": "1052400",
+    "photo": "https://ddfcdn.realtor.ca/listings/TS639280105103900000/reb1/highres/0/1052400_1.jpg",
+    "url": "https://midislandrealty.com/listing/10-5450-tomswood-rd-port-alberni-british-columbia-v9y-0b4-30418406/"
+  },
+  {
+    "address": "5453 Woodland Cres W",
+    "city": "Port Alberni",
+    "price": 389900,
+    "priceText": "$389,900",
+    "beds": 2,
+    "baths": 2,
+    "sqft": 1111,
+    "propertyType": "Single Family",
+    "mlsNumber": "1053099",
+    "photo": "https://ddfcdn.realtor.ca/listings/TS639286410794900000/reb1/highres/9/1053099_1.jpg",
+    "url": "https://midislandrealty.com/listing/5453-woodland-cres-w-port-alberni-british-columbia-v9y-8h1-30446369/"
+  },
+  {
+    "address": "4106 Steede Ave",
+    "city": "Port Alberni",
+    "price": 789900,
+    "priceText": "$789,900",
+    "beds": 5,
+    "baths": 3,
+    "sqft": 2732,
+    "propertyType": "Single Family",
+    "mlsNumber": "1053794",
+    "photo": "https://ddfcdn.realtor.ca/listings/TS639302622747500000/reb1/highres/4/1053794_1.jpg",
+    "url": "https://midislandrealty.com/listing/4106-steede-ave-port-alberni-british-columbia-v9y-8b6-30513906/"
+  },
+  {
+    "address": "201 596 Marine Dr",
+    "city": "Ucluelet",
+    "price": 450000,
+    "priceText": "$450,000",
+    "beds": 1,
+    "baths": 1,
+    "sqft": 773,
+    "propertyType": "Single Family",
+    "mlsNumber": "1054189",
+    "photo": "https://ddfcdn.realtor.ca/listings/TS639301963510470000/reb1/highres/9/1054189_1.jpg",
+    "url": "https://midislandrealty.com/listing/201-596-marine-dr-ucluelet-british-columbia-v0r-3a0-30512874/"
+  },
+  {
+    "address": "16 911 Campbell St",
+    "city": "Tofino",
+    "price": 325000,
+    "priceText": "$325,000",
+    "beds": 2,
+    "baths": 1,
+    "sqft": 1191,
+    "propertyType": "Single Family",
+    "mlsNumber": "1040320",
+    "photo": "https://ddfcdn.realtor.ca/listings/TS639301218799400000/reb1/highres/0/1040320_1.jpg",
+    "url": "https://midislandrealty.com/listing/16-911-campbell-st-tofino-british-columbia-v0r-2z0-29907321/"
+  },
+  {
+    "address": "3767 Michigan Rd",
+    "city": "Port Alberni",
+    "price": 599000,
+    "priceText": "$599,000",
+    "beds": 3,
+    "baths": 2,
+    "sqft": 1649,
+    "propertyType": "Single Family",
+    "mlsNumber": "1054111",
+    "photo": "https://ddfcdn.realtor.ca/listings/TS639301795819330000/reb1/highres/1/1054111_1.jpg",
+    "url": "https://midislandrealty.com/listing/3767-michigan-rd-port-alberni-british-columbia-v9y-5z9-30508372/"
+  },
+  {
+    "address": "844 Rainforest Dr",
+    "city": "Ucluelet",
+    "price": 995000,
+    "priceText": "$995,000",
+    "propertyType": "Vacant Land",
+    "mlsNumber": "1026816",
+    "photo": "https://ddfcdn.realtor.ca/listings/TS639075385336400000/reb1/highres/6/1026816_1.jpg",
+    "url": "https://midislandrealty.com/listing/844-rainforest-dr-ucluelet-british-columbia-v0r-3a0-29394104/"
+  },
+  {
+    "address": "4739 Mar St",
+    "city": "Port Alberni",
+    "price": 419000,
+    "priceText": "$419,000",
+    "beds": 2,
+    "baths": 1,
+    "sqft": 863,
+    "propertyType": "Single Family",
+    "mlsNumber": "1054286",
+    "photo": "https://ddfcdn.realtor.ca/listings/TS639301082824930000/reb1/highres/6/1054286_1.jpg",
+    "url": "https://midislandrealty.com/listing/4739-mar-st-port-alberni-british-columbia-v9y-1p8-30508771/"
+  },
+  {
+    "address": "3615 Lyall Point Cres",
+    "city": "Port Alberni",
+    "price": 840000,
+    "priceText": "$840,000",
+    "beds": 4,
+    "baths": 3,
+    "sqft": 2366,
+    "propertyType": "Single Family",
+    "mlsNumber": "1050485",
+    "photo": "https://ddfcdn.realtor.ca/listings/TS639297468495400000/reb1/highres/5/1050485_1.jpg",
+    "url": "https://midislandrealty.com/listing/3615-lyall-point-cres-port-alberni-british-columbia-v9y-0a2-30332144/"
+  },
+  {
+    "address": "5536 Falls St",
+    "city": "Port Alberni",
+    "price": 549900,
+    "priceText": "$549,900",
+    "beds": 4,
+    "baths": 3,
+    "sqft": 1920,
+    "propertyType": "Single Family",
+    "mlsNumber": "1052361",
+    "photo": "https://ddfcdn.realtor.ca/listings/TS639279205319070000/reb1/highres/1/1052361_1.jpg",
+    "url": "https://midislandrealty.com/listing/5536-falls-st-port-alberni-british-columbia-v9y-7y6-30416196/"
+  },
+  {
+    "address": "208 2825 3rd Ave",
+    "city": "Port Alberni",
+    "price": 309900,
+    "priceText": "$309,900",
+    "beds": 2,
+    "baths": 2,
+    "sqft": 1053,
+    "propertyType": "Single Family",
+    "mlsNumber": "1054156",
+    "photo": "https://ddfcdn.realtor.ca/listings/TS639299292647370000/reb1/highres/6/1054156_1.jpg",
+    "url": "https://midislandrealty.com/listing/208-2825-3rd-ave-port-alberni-british-columbia-v9y-2a9-30500543/"
+  },
+  {
+    "address": "1257 Lynn Rd",
+    "city": "Tofino",
+    "price": 6700000,
+    "priceText": "$6,700,000",
+    "beds": 4,
+    "baths": 4,
+    "sqft": 3322,
+    "propertyType": "Single Family",
+    "mlsNumber": "1028457",
+    "photo": "https://ddfcdn.realtor.ca/listings/TS639299155617530000/reb1/highres/7/1028457_1.jpg",
+    "url": "https://midislandrealty.com/listing/1257-lynn-rd-tofino-british-columbia-v0r-2z0-29565520/"
+  },
+  {
+    "address": "7251 Thompson Rd",
+    "city": "Port Alberni",
+    "price": 929900,
+    "priceText": "$929,900",
+    "beds": 4,
+    "baths": 2,
+    "sqft": 2629,
+    "propertyType": "Single Family",
+    "mlsNumber": "1052307",
+    "photo": "https://ddfcdn.realtor.ca/listings/TS639280872829800000/reb1/highres/7/1052307_1.jpg",
+    "url": "https://midislandrealty.com/listing/7251-thompson-rd-port-alberni-british-columbia-v9y-8m3-30421874/"
+  },
+  {
+    "address": "4581 Wellington Ave",
+    "city": "Port Alberni",
+    "price": 649000,
+    "priceText": "$649,000",
+    "beds": 4,
+    "baths": 2,
+    "sqft": 1575,
+    "propertyType": "Single Family",
+    "mlsNumber": "1047115",
+    "photo": "https://ddfcdn.realtor.ca/listings/TS639226549704430000/reb1/highres/5/1047115_1.jpg",
+    "url": "https://midislandrealty.com/listing/4581-wellington-ave-port-alberni-british-columbia-v9y-7l4-30169016/"
+  },
+  {
+    "address": "5335 Ian Ave",
+    "city": "Port Alberni",
+    "price": 599000,
+    "priceText": "$599,000",
+    "beds": 3,
+    "baths": 1,
+    "sqft": 1597,
+    "propertyType": "Single Family",
+    "mlsNumber": "1041424",
+    "photo": "https://ddfcdn.realtor.ca/listings/TS639240774726300000/reb1/highres/4/1041424_1.jpg",
+    "url": "https://midislandrealty.com/listing/5335-ian-ave-port-alberni-british-columbia-v9y-6v9-29948600/"
+  },
+  {
     "address": "3180 7th Ave",
     "city": "Port Alberni",
     "price": 699000,
@@ -24,19 +408,6 @@
     "mlsNumber": "1049173",
     "photo": "https://ddfcdn.realtor.ca/listings/TS639293113277270000/reb1/highres/3/1049173_1.jpg",
     "url": "https://midislandrealty.com/listing/2978-kingsway-ave-port-alberni-british-columbia-v9y-2g1-30264248/"
-  },
-  {
-    "address": "3615 Lyall Point Cres",
-    "city": "Port Alberni",
-    "price": 840000,
-    "priceText": "$840,000",
-    "beds": 4,
-    "baths": 3,
-    "sqft": 2366,
-    "propertyType": "Single Family",
-    "mlsNumber": "1050485",
-    "photo": "https://ddfcdn.realtor.ca/listings/TS639297468495400000/reb1/highres/5/1050485_1.jpg",
-    "url": "https://midislandrealty.com/listing/3615-lyall-point-cres-port-alberni-british-columbia-v9y-0a2-30332144/"
   },
   {
     "address": "516 Berg Rd",
@@ -128,19 +499,6 @@
     "mlsNumber": "1048949",
     "photo": "https://ddfcdn.realtor.ca/listings/TS639269767950900000/reb1/highres/9/1048949_1.jpg",
     "url": "https://midislandrealty.com/listing/1802-peninsula-rd-ucluelet-british-columbia-v0r-3a0-30264538/"
-  },
-  {
-    "address": "4575 Arrowsmith Rd",
-    "city": "Port Alberni",
-    "price": 449900,
-    "priceText": "$449,900",
-    "beds": 3,
-    "baths": 1,
-    "sqft": 985,
-    "propertyType": "Single Family",
-    "mlsNumber": "1053914",
-    "photo": "https://ddfcdn.realtor.ca/listings/TS639295057242470000/reb1/highres/4/1053914_1.jpg",
-    "url": "https://midislandrealty.com/listing/4575-arrowsmith-rd-port-alberni-british-columbia-v9y-5p3-30485900/"
   },
   {
     "address": "5070 Katherine Dr",
@@ -326,19 +684,6 @@
     "url": "https://midislandrealty.com/listing/3953-morton-st-port-alberni-british-columbia-v9y-3v4-30466239/"
   },
   {
-    "address": "3039 5th Ave",
-    "city": "Port Alberni",
-    "price": 499000,
-    "priceText": "$499,000",
-    "beds": 4,
-    "baths": 4,
-    "sqft": 2307,
-    "propertyType": "Single Family",
-    "mlsNumber": "1028663",
-    "photo": "https://ddfcdn.realtor.ca/listings/TS639257796715600000/reb1/highres/3/1028663_1.jpg",
-    "url": "https://midislandrealty.com/listing/3039-5th-ave-port-alberni-british-columbia-v9y-2e4-29492723/"
-  },
-  {
     "address": "4 1024 Tyee Terr",
     "city": "Ucluelet",
     "price": 469000,
@@ -397,32 +742,6 @@
     "url": "https://midislandrealty.com/listing/5255-tebo-ave-port-alberni-british-columbia-v9y-6a2-30226585/"
   },
   {
-    "address": "101 5535 Woodland Cres E",
-    "city": "Port Alberni",
-    "price": 475000,
-    "priceText": "$475,000",
-    "beds": 3,
-    "baths": 3,
-    "sqft": 1372,
-    "propertyType": "Single Family",
-    "mlsNumber": "1029359",
-    "photo": "https://ddfcdn.realtor.ca/listings/TS639246631308900000/reb1/highres/9/1029359_1.jpg",
-    "url": "https://midislandrealty.com/listing/101-5535-woodland-cres-e-port-alberni-british-columbia-v9y-8e6-29536402/"
-  },
-  {
-    "address": "204 5700 Pierce Rd",
-    "city": "Port Alberni",
-    "price": 510000,
-    "priceText": "$510,000",
-    "beds": 2,
-    "baths": 2,
-    "sqft": 1410,
-    "propertyType": "Single Family",
-    "mlsNumber": "1047919",
-    "photo": "https://ddfcdn.realtor.ca/listings/TS639233641058030000/reb1/highres/9/1047919_1.jpg",
-    "url": "https://midislandrealty.com/listing/204-5700-pierce-rd-port-alberni-british-columbia-v9y-0a3-30201606/"
-  },
-  {
     "address": "2433 5th Ave",
     "city": "Port Alberni",
     "price": 498000,
@@ -449,19 +768,6 @@
     "url": "https://midislandrealty.com/listing/2955-15th-ave-port-alberni-british-columbia-v9y-2y9-30308030/"
   },
   {
-    "address": "5 3774 12th Ave",
-    "city": "Port Alberni",
-    "price": 475000,
-    "priceText": "$475,000",
-    "beds": 2,
-    "baths": 2,
-    "sqft": 1339,
-    "propertyType": "Single Family",
-    "mlsNumber": "1051136",
-    "photo": "https://ddfcdn.realtor.ca/listings/TS639262969002800000/reb1/highres/6/1051136_1.jpg",
-    "url": "https://midislandrealty.com/listing/5-3774-12th-ave-port-alberni-british-columbia-v9y-5a5-30342019/"
-  },
-  {
     "address": "Sl 3 Grandview Rd",
     "city": "Port Alberni",
     "price": 329900,
@@ -482,19 +788,6 @@
     "url": "https://midislandrealty.com/listing/sl-2-grandview-rd-port-alberni-british-columbia-v9y-8w1-30358833/"
   },
   {
-    "address": "2 3258 Alberni Hwy",
-    "city": "Port Alberni",
-    "price": 167500,
-    "priceText": "$167,500",
-    "beds": 2,
-    "baths": 1,
-    "sqft": 727,
-    "propertyType": "Single Family",
-    "mlsNumber": "1051939",
-    "photo": "https://ddfcdn.realtor.ca/listings/TS639271723040900000/reb1/highres/9/1051939_1.jpg",
-    "url": "https://midislandrealty.com/listing/2-3258-alberni-hwy-port-alberni-british-columbia-v9y-8g4-30389029/"
-  },
-  {
     "address": "4594 Alwyn St",
     "city": "Port Alberni",
     "price": 609900,
@@ -508,45 +801,6 @@
     "url": "https://midislandrealty.com/listing/4594-alwyn-st-port-alberni-british-columbia-v9y-5v1-30249970/"
   },
   {
-    "address": "5453 Woodland Cres W",
-    "city": "Port Alberni",
-    "price": 389900,
-    "priceText": "$389,900",
-    "beds": 2,
-    "baths": 2,
-    "sqft": 1111,
-    "propertyType": "Single Family",
-    "mlsNumber": "1053099",
-    "photo": "https://ddfcdn.realtor.ca/listings/TS639286410794900000/reb1/highres/9/1053099_1.jpg",
-    "url": "https://midislandrealty.com/listing/5453-woodland-cres-w-port-alberni-british-columbia-v9y-8h1-30446369/"
-  },
-  {
-    "address": "3933 10th Ave",
-    "city": "Port Alberni",
-    "price": 358900,
-    "priceText": "$358,900",
-    "beds": 3,
-    "baths": 1,
-    "sqft": 1274,
-    "propertyType": "Single Family",
-    "mlsNumber": "1047759",
-    "photo": "https://ddfcdn.realtor.ca/listings/TS639272467082170000/reb1/highres/9/1047759_1.jpg",
-    "url": "https://midislandrealty.com/listing/3933-10th-ave-port-alberni-british-columbia-v9y-4x1-30200962/"
-  },
-  {
-    "address": "16 911 Campbell St",
-    "city": "Tofino",
-    "price": 360000,
-    "priceText": "$360,000",
-    "beds": 2,
-    "baths": 1,
-    "sqft": 1191,
-    "propertyType": "Single Family",
-    "mlsNumber": "1040320",
-    "photo": "https://ddfcdn.realtor.ca/listings/TS639171457368870000/reb1/highres/0/1040320_1.jpg",
-    "url": "https://midislandrealty.com/listing/16-911-campbell-st-tofino-british-columbia-v0r-2z0-29907321/"
-  },
-  {
     "address": "2667 4th Ave",
     "city": "Port Alberni",
     "price": 495000,
@@ -558,32 +812,6 @@
     "mlsNumber": "1053310",
     "photo": "https://ddfcdn.realtor.ca/listings/TS639288181028600000/reb1/highres/0/1053310_1.jpg",
     "url": "https://midislandrealty.com/listing/2667-4th-ave-port-alberni-british-columbia-v9y-2c4-30455378/"
-  },
-  {
-    "address": "5536 Falls St",
-    "city": "Port Alberni",
-    "price": 564900,
-    "priceText": "$564,900",
-    "beds": 4,
-    "baths": 3,
-    "sqft": 1920,
-    "propertyType": "Single Family",
-    "mlsNumber": "1052361",
-    "photo": "https://ddfcdn.realtor.ca/listings/TS639279205319070000/reb1/highres/1/1052361_1.jpg",
-    "url": "https://midislandrealty.com/listing/5536-falls-st-port-alberni-british-columbia-v9y-7y6-30416196/"
-  },
-  {
-    "address": "2473 8th Ave",
-    "city": "Port Alberni",
-    "price": 342500,
-    "priceText": "$342,500",
-    "beds": 3,
-    "baths": 1,
-    "sqft": 1224,
-    "propertyType": "Single Family",
-    "mlsNumber": "1053138",
-    "photo": "https://ddfcdn.realtor.ca/listings/TS639288097124530000/reb1/highres/8/1053138_1.jpg",
-    "url": "https://midislandrealty.com/listing/2473-8th-ave-port-alberni-british-columbia-v9y-2l8-30454992/"
   },
   {
     "address": "2282 14th Ave",
@@ -691,19 +919,6 @@
     "url": "https://midislandrealty.com/listing/a-3553-third-ave-port-alberni-british-columbia-v9y-4e6-30388298/"
   },
   {
-    "address": "5118 Compton Rd",
-    "city": "Port Alberni",
-    "price": 759900,
-    "priceText": "$759,900",
-    "beds": 4,
-    "baths": 2,
-    "sqft": 2139,
-    "propertyType": "Single Family",
-    "mlsNumber": "1043517",
-    "photo": "https://ddfcdn.realtor.ca/listings/TS639203473044900000/reb1/highres/7/1043517_1.jpg",
-    "url": "https://midislandrealty.com/listing/5118-compton-rd-port-alberni-british-columbia-v9y-7a5-30068516/"
-  },
-  {
     "address": "6 590 Marine Dr",
     "city": "Ucluelet",
     "price": 779000,
@@ -725,19 +940,6 @@
     "mlsNumber": "1029554",
     "photo": "https://ddfcdn.realtor.ca/listings/TS639098923187670000/reb1/highres/4/1029554_1.jpg",
     "url": "https://midislandrealty.com/listing/a-4850-beaver-creek-rd-port-alberni-british-columbia-v9y-7c8-29506294/"
-  },
-  {
-    "address": "4040 Clegg Cres S",
-    "city": "Port Alberni",
-    "price": 629000,
-    "priceText": "$629,000",
-    "beds": 4,
-    "baths": 3,
-    "sqft": 2180,
-    "propertyType": "Single Family",
-    "mlsNumber": "1049793",
-    "photo": "https://ddfcdn.realtor.ca/listings/TS639250890987270000/reb1/highres/3/1049793_1.jpg",
-    "url": "https://midislandrealty.com/listing/4040-clegg-cres-s-port-alberni-british-columbia-v9y-7x5-30283135/"
   },
   {
     "address": "13 731 Marine Dr",
@@ -777,19 +979,6 @@
     "mlsNumber": "1052665",
     "photo": "https://ddfcdn.realtor.ca/listings/TS639281029106530000/reb1/highres/5/1052665_1.jpg",
     "url": "https://midislandrealty.com/listing/1-731-marine-dr-ucluelet-british-columbia-v0r-3a0-30423815/"
-  },
-  {
-    "address": "7251 Thompson Rd",
-    "city": "Port Alberni",
-    "price": 949900,
-    "priceText": "$949,900",
-    "beds": 4,
-    "baths": 2,
-    "sqft": 2629,
-    "propertyType": "Single Family",
-    "mlsNumber": "1052307",
-    "photo": "https://ddfcdn.realtor.ca/listings/TS639280872829800000/reb1/highres/7/1052307_1.jpg",
-    "url": "https://midislandrealty.com/listing/7251-thompson-rd-port-alberni-british-columbia-v9y-8m3-30421874/"
   },
   {
     "address": "205 2825 3rd Ave",
@@ -862,19 +1051,6 @@
     "mlsNumber": "1049834",
     "photo": "https://ddfcdn.realtor.ca/listings/TS639251605059130000/reb1/highres/4/1049834_1.jpg",
     "url": "https://midislandrealty.com/listing/2876-12th-ave-port-alberni-british-columbia-v9y-2t4-30287319/"
-  },
-  {
-    "address": "10 5450 Tomswood Rd",
-    "city": "Port Alberni",
-    "price": 679000,
-    "priceText": "$679,000",
-    "beds": 3,
-    "baths": 2,
-    "sqft": 1500,
-    "propertyType": "Single Family",
-    "mlsNumber": "1052400",
-    "photo": "https://ddfcdn.realtor.ca/listings/TS639280105103900000/reb1/highres/0/1052400_1.jpg",
-    "url": "https://midislandrealty.com/listing/10-5450-tomswood-rd-port-alberni-british-columbia-v9y-0b4-30418406/"
   },
   {
     "address": "5550 Cherry Creek Rd",
@@ -1063,19 +1239,6 @@
     "url": "https://midislandrealty.com/listing/315-596-marine-dr-ucluelet-british-columbia-v0r-3a0-30388934/"
   },
   {
-    "address": "509 3108 Barons Rd",
-    "city": "Nanaimo",
-    "price": 285000,
-    "priceText": "$285,000",
-    "beds": 2,
-    "baths": 1,
-    "sqft": 722,
-    "propertyType": "Single Family",
-    "mlsNumber": "1051831",
-    "photo": "https://ddfcdn.realtor.ca/listings/TS639271621185130000/reb1/highres/1/1051831_1.jpg",
-    "url": "https://midislandrealty.com/listing/509-3108-barons-rd-nanaimo-british-columbia-v9t-4b5-30388189/"
-  },
-  {
     "address": "8253 Dickson Dr",
     "city": "Port Alberni",
     "price": 1930000,
@@ -1198,19 +1361,6 @@
     "mlsNumber": "1051369",
     "photo": "https://ddfcdn.realtor.ca/listings/TS639268213168430000/reb1/highres/9/1051369_1.jpg",
     "url": "https://midislandrealty.com/listing/1032-shore-pine-dr-ucluelet-british-columbia-v0r-3a0-30367423/"
-  },
-  {
-    "address": "5495 Maebelle Rd",
-    "city": "Port Alberni",
-    "price": 1349000,
-    "priceText": "$1,349,000",
-    "beds": 3,
-    "baths": 3,
-    "sqft": 2306,
-    "propertyType": "Single Family",
-    "mlsNumber": "1029248",
-    "photo": "https://ddfcdn.realtor.ca/listings/TS639097818470100000/reb1/highres/8/1029248_1.jpg",
-    "url": "https://midislandrealty.com/listing/5495-maebelle-rd-port-alberni-british-columbia-v9y-8r2-29491219/"
   },
   {
     "address": "12 11000 Central Lake Rd",
@@ -1362,32 +1512,6 @@
     "url": "https://midislandrealty.com/listing/828-odyssey-lane-ucluelet-british-columbia-v0r-3a0-29332025/"
   },
   {
-    "address": "1257 Lynn Rd",
-    "city": "Tofino",
-    "price": 6700000,
-    "priceText": "$6,700,000",
-    "beds": 4,
-    "baths": 4,
-    "sqft": 3322,
-    "propertyType": "Single Family",
-    "mlsNumber": "1028457",
-    "photo": "https://ddfcdn.realtor.ca/listings/TS639158532713270000/reb1/highres/7/1028457_1.jpg",
-    "url": "https://midislandrealty.com/listing/1257-lynn-rd-tofino-british-columbia-v0r-2z0-29565520/"
-  },
-  {
-    "address": "104 5535 Woodland Cres E",
-    "city": "Port Alberni",
-    "price": 435000,
-    "priceText": "$435,000",
-    "beds": 3,
-    "baths": 3,
-    "sqft": 1372,
-    "propertyType": "Single Family",
-    "mlsNumber": "1029368",
-    "photo": "https://ddfcdn.realtor.ca/listings/TS639250086973970000/reb1/highres/8/1029368_1.jpg",
-    "url": "https://midislandrealty.com/listing/104-5535-woodland-cres-e-port-alberni-british-columbia-v9y-8e6-29536401/"
-  },
-  {
     "address": "103 5535 Woodland Cres E",
     "city": "Port Alberni",
     "price": 460000,
@@ -1412,19 +1536,6 @@
     "mlsNumber": "1029466",
     "photo": "https://ddfcdn.realtor.ca/listings/TS639201714791100000/reb1/highres/6/1029466_1.jpg",
     "url": "https://midislandrealty.com/listing/110-5535-woodland-cres-e-port-alberni-british-columbia-v9y-8e6-29536398/"
-  },
-  {
-    "address": "108 5535 Woodland Cres E",
-    "city": "Port Alberni",
-    "price": 460000,
-    "priceText": "$460,000",
-    "beds": 3,
-    "baths": 3,
-    "sqft": 1372,
-    "propertyType": "Single Family",
-    "mlsNumber": "1029429",
-    "photo": "https://ddfcdn.realtor.ca/listings/TS639201714445930000/reb1/highres/9/1029429_1.jpg",
-    "url": "https://midislandrealty.com/listing/108-5535-woodland-cres-e-port-alberni-british-columbia-v9y-8e6-29536399/"
   },
   {
     "address": "105 5535 Woodland Cres E",
@@ -1582,19 +1693,6 @@
     "url": "https://midislandrealty.com/listing/7874-beaver-creek-rd-port-alberni-british-columbia-v9y-8n3-29948929/"
   },
   {
-    "address": "5335 Ian Ave",
-    "city": "Port Alberni",
-    "price": 619000,
-    "priceText": "$619,000",
-    "beds": 3,
-    "baths": 1,
-    "sqft": 1597,
-    "propertyType": "Single Family",
-    "mlsNumber": "1041424",
-    "photo": "https://ddfcdn.realtor.ca/listings/TS639240774726300000/reb1/highres/4/1041424_1.jpg",
-    "url": "https://midislandrealty.com/listing/5335-ian-ave-port-alberni-british-columbia-v9y-6v9-29948600/"
-  },
-  {
     "address": "5526 Grandview Rd",
     "city": "Port Alberni",
     "price": 2499000,
@@ -1632,19 +1730,6 @@
     "mlsNumber": "1046409",
     "photo": "https://ddfcdn.realtor.ca/listings/TS639217212941200000/reb1/highres/9/1046409_1.jpg",
     "url": "https://midislandrealty.com/listing/3871-anderson-ave-port-alberni-british-columbia-v9y-5b1-30130660/"
-  },
-  {
-    "address": "4581 Wellington Ave",
-    "city": "Port Alberni",
-    "price": 679000,
-    "priceText": "$679,000",
-    "beds": 4,
-    "baths": 2,
-    "sqft": 1575,
-    "propertyType": "Single Family",
-    "mlsNumber": "1047115",
-    "photo": "https://ddfcdn.realtor.ca/listings/TS639226549704430000/reb1/highres/5/1047115_1.jpg",
-    "url": "https://midislandrealty.com/listing/4581-wellington-ave-port-alberni-british-columbia-v9y-7l4-30169016/"
   },
   {
     "address": "7201 Bell Rd",
@@ -1738,19 +1823,6 @@
     "url": "https://midislandrealty.com/listing/6038-kirkpatrick-rd-port-alberni-british-columbia-v9y-8x4-30235918/"
   },
   {
-    "address": "700 Ocean Park Dr",
-    "city": "Tofino",
-    "price": 1169000,
-    "priceText": "$1,169,000",
-    "beds": 3,
-    "baths": 3,
-    "sqft": 1869,
-    "propertyType": "Single Family",
-    "mlsNumber": "1049587",
-    "photo": "https://ddfcdn.realtor.ca/listings/TS639251052907330000/reb1/highres/7/1049587_1.jpg",
-    "url": "https://midislandrealty.com/listing/700-ocean-park-dr-tofino-british-columbia-v0r-2z0-30284448/"
-  },
-  {
     "address": "3819 14th Ave",
     "city": "Port Alberni",
     "price": 589000,
@@ -1800,19 +1872,6 @@
     "url": "https://midislandrealty.com/listing/1138-fifth-ave-ucluelet-british-columbia-v0r-3a0-30335991/"
   },
   {
-    "address": "15 4935 Broughton St",
-    "city": "Port Alberni",
-    "price": 249000,
-    "priceText": "$249,000",
-    "beds": 3,
-    "baths": 1,
-    "sqft": 960,
-    "propertyType": "Single Family",
-    "mlsNumber": "1041985",
-    "photo": "https://ddfcdn.realtor.ca/listings/TS639186829392870000/reb1/highres/5/1041985_1.jpg",
-    "url": "https://midislandrealty.com/listing/15-4935-broughton-st-port-alberni-british-columbia-v9y-8g7-29985785/"
-  },
-  {
     "address": "392 Reef Point Rd",
     "city": "Ucluelet",
     "price": 1448900,
@@ -1854,19 +1913,6 @@
     "mlsNumber": "1047814",
     "photo": "https://ddfcdn.realtor.ca/listings/TS639252445593600000/reb1/highres/4/1047814_1.jpg",
     "url": "https://midislandrealty.com/listing/4244-johnston-rd-port-alberni-british-columbia-v9y-5m9-30292874/"
-  },
-  {
-    "address": "6155 Cherry Creek Rd",
-    "city": "Port Alberni",
-    "price": 698000,
-    "priceText": "$698,000",
-    "beds": 3,
-    "baths": 2,
-    "sqft": 1588,
-    "propertyType": "Single Family",
-    "mlsNumber": "1042731",
-    "photo": "https://ddfcdn.realtor.ca/listings/TS639251677651370000/reb1/highres/1/1042731_1.jpg",
-    "url": "https://midislandrealty.com/listing/6155-cherry-creek-rd-port-alberni-british-columbia-v9y-8s6-30033084/"
   },
   {
     "address": "350 Campbell St",
@@ -1993,16 +2039,6 @@
     "mlsNumber": "1043879",
     "photo": "https://ddfcdn.realtor.ca/listings/TS639233533000300000/reb1/highres/9/1043879_1.jpg",
     "url": "https://midislandrealty.com/listing/885-moser-pl-tofino-british-columbia-v0r-2z0-30171329/"
-  },
-  {
-    "address": "844 Rainforest Dr",
-    "city": "Ucluelet",
-    "price": 995000,
-    "priceText": "$995,000",
-    "propertyType": "Vacant Land",
-    "mlsNumber": "1026816",
-    "photo": "https://ddfcdn.realtor.ca/listings/TS639075385336400000/reb1/highres/6/1026816_1.jpg",
-    "url": "https://midislandrealty.com/listing/844-rainforest-dr-ucluelet-british-columbia-v0r-3a0-29394104/"
   },
   {
     "address": "356-360 Main St",
@@ -2325,19 +2361,6 @@
     "url": "https://midislandrealty.com/listing/277-boardwalk-blvd-ucluelet-british-columbia-v0r-3a0-27980738/"
   },
   {
-    "address": "103 596 Marine Dr",
-    "city": "Ucluelet",
-    "price": 470000,
-    "priceText": "$470,000",
-    "beds": 1,
-    "baths": 1,
-    "sqft": 764,
-    "propertyType": "Single Family",
-    "mlsNumber": "1036771",
-    "photo": "https://ddfcdn.realtor.ca/listings/TS639148783709370000/reb1/highres/1/1036771_1.jpg",
-    "url": "https://midislandrealty.com/listing/103-596-marine-dr-ucluelet-british-columbia-v0r-3a0-29777146/"
-  },
-  {
     "address": "2003 596 Marine Dr",
     "city": "Ucluelet",
     "price": 489000,
@@ -2372,16 +2395,6 @@
     "mlsNumber": "1005208",
     "photo": "https://ddfcdn.realtor.ca/listings/TS638870772987870000/reb1/highres/8/1005208_1.jpg",
     "url": "https://midislandrealty.com/listing/55-useless-inlet-port-alberni-british-columbia-v0r-2b0-28547471/"
-  },
-  {
-    "address": "912 Barkley Pl",
-    "city": "Ucluelet",
-    "price": 649000,
-    "priceText": "$649,000",
-    "propertyType": "Vacant Land",
-    "mlsNumber": "1037279",
-    "photo": "https://ddfcdn.realtor.ca/listings/TS639147998744070000/reb1/highres/9/1037279_1.jpg",
-    "url": "https://midislandrealty.com/listing/912-barkley-pl-ucluelet-british-columbia-v0r-3a0-29771672/"
   },
   {
     "address": "507 1971 Harbour Dr",
